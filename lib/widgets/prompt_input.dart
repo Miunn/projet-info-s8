@@ -17,10 +17,11 @@ class _PromptInputState extends State<PromptInput> {
     return TextField(
       autofocus: false,
       decoration: InputDecoration(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide.none,
-      ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 20.0),
         filled: true,
         fillColor: Theme.of(context).colorScheme.surfaceVariant,
         hintStyle: TextStyle(
