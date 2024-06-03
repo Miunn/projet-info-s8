@@ -16,6 +16,7 @@ class _ChatBotState extends State<ChatBot> {
       body: Padding(
         padding: EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 0.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ChatBubble(
               text: 'Bonjour, comment puis-je vous aider ?',
