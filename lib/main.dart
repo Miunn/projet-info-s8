@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uphf_generative_ai/screens/chatbot.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +43,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgets = <Widget>[
-    Text('Chatbot'),
+    ChatBot(),
     Text('Profile'),
   ];
 
