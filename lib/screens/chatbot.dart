@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uphf_generative_ai/widgets/prompt_input.dart';
 
@@ -19,17 +20,20 @@ class _ChatBotState extends State<ChatBot> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Column(
-              children: [
-                ChatBubble(
-                  text: 'Bonjour, comment puis-je vous aider ?',
-                  isMe: false,
-                ),
-                ChatBubble(
-                  text: 'Je voudrais savoir si je peux m\'inscrire à l\'UPHF',
-                  isMe: true,
-                ),
-              ],
+            const SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  ChatBubble(
+                    text: 'Bonjour, comment puis-je vous aider ?',
+                    isMe: false,
+                  ),
+                  ChatBubble(
+                    text: 'Je voudrais savoir si je peux m\'inscrire à l\'UPHF',
+                    isMe: true,
+                  ),
+                ],
+              ),
             ),
             PromptInput(onSubmitted: (String value) {
               debugPrint(value);
