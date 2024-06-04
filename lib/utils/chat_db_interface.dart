@@ -11,7 +11,7 @@ class ChatDatabaseInterface {
 
   static const String databaseName = 'chat.db';
 
-  static const int versionNumber = 1;
+  static const int versionNumber = 3;
 
   static const String tableName = 'Chat';
   static const String colId = 'id';
@@ -50,7 +50,7 @@ class ChatDatabaseInterface {
         $colId INTEGER PRIMARY KEY AUTOINCREMENT,
         $colMessage TEXT NOT NULL,
         $colIsMe INTEGER NOT NULL,
-        $colConversationId TEXT NOT NULL,
+        $colConversationId TEXT,
         $colSentAt TEXT NOT NULL
       )
     ''');

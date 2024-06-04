@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uphf_generative_ai/models/chat.dart';
+import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 
 class PromptInput extends StatefulWidget {
-  const PromptInput({super.key, required this.onSubmitted});
-
-  final ValueChanged<String> onSubmitted;
+  const PromptInput({super.key});
 
   @override
   State<PromptInput> createState() => _PromptInputState();
@@ -15,7 +16,9 @@ class _PromptInputState extends State<PromptInput> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      textInputAction: TextInputAction.newline,
+      keyboardType: TextInputType.multiline,
+      minLines: 1,
+      maxLines: 5,
       autofocus: false,
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -25,7 +28,11 @@ class _PromptInputState extends State<PromptInput> {
         suffixIcon: IconButton(
           icon: const Icon(Icons.send),
           onPressed: () {
-            widget.onSubmitted(_controller.text);
+            context.read<ChatProvider>().addChat(Chat(
+              message: _controller.text,
+              isMe: true,
+              sentAt: DateTime.now(),
+            ));
             _controller.clear();
           },
         ),

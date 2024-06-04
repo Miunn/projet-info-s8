@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 import 'package:uphf_generative_ai/widgets/prompt_input.dart';
 
+import '../models/chat.dart';
 import '../widgets/chat_bubble.dart';
 
 class ChatBot extends StatefulWidget {
@@ -20,24 +23,28 @@ class _ChatBotState extends State<ChatBot> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const SingleChildScrollView(
+            SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  ChatBubble(
-                    text: 'Bonjour, comment puis-je vous aider ?',
-                    isMe: false,
-                  ),
-                  ChatBubble(
-                    text: 'Je voudrais savoir si je peux m\'inscrire à l\'UPHF',
-                    isMe: true,
-                  ),
-                ],
+              child: Consumer<ChatProvider>(
+                builder: (BuildContext context, ChatProvider chatProvider, Widget? child) {
+                  return Column(
+                    children: chatProvider.chats.map<ChatBubble>((Chat chat) {
+                      if (chat.message == null || chat.message!.isEmpty) {
+                        return const ChatBubble(
+                          text: '...',
+                          isMe: false,
+                        );
+                      }
+                      return ChatBubble(
+                        text: chat.message!,
+                        isMe: chat.isMe ?? false,
+                      );
+                    }).toList(),
+                  );
+                },
               ),
             ),
-            PromptInput(onSubmitted: (String value) {
-              debugPrint(value);
-            }),
+            PromptInput(),
           ],
         ),
       ),

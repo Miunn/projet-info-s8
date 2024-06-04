@@ -9,7 +9,7 @@ class ChatProvider extends ChangeNotifier {
   List<Chat> _chats = [];
   Map<String, List<Chat>> _chatsByConversation = {};
 
-  List<Chat> get chat => _chats;
+  List<Chat> get chats => _chats;
   Map<String, List<Chat>> get chatsByConversation => _chatsByConversation;
 
   ChatProvider() {

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 import 'package:uphf_generative_ai/screens/chatbot.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -42,9 +46,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgets = <Widget>[
-    ChatBot(),
-    Text('Profile'),
+  static final List<Widget> _widgets = <Widget>[
+    ChangeNotifierProvider(
+      create: (context) => ChatProvider(),
+        child: const ChatBot()
+    ),
+    const Text('Profile'),
   ];
 
   void _onItemTapped(int index) {

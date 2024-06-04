@@ -3,7 +3,7 @@ class Chat {
   String? message;
   bool? isMe;
   String? conversationId;
-  String? sentAt;
+  DateTime? sentAt;
 
   Chat({this.id, this.message, this.isMe, this.conversationId, this.sentAt});
 
@@ -11,18 +11,18 @@ class Chat {
     return {
       'id': id,
       'message': message,
-      'isMe': isMe,
+      'isMe': (isMe ?? false) ? 1 : 0,
       'conversationId': conversationId,
-      'sentAt': sentAt,
+      'sentAt': sentAt?.toIso8601String(),
     };
   }
 
   Chat.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     message = map['message'];
-    isMe = map['isMe'];
+    isMe = map['isMe'] == 1 ? true : false;
     conversationId = map['conversationId'];
-    sentAt = map['sentAt'];
+    sentAt = DateTime.parse(map['sentAt']);
   }
 
   @override
