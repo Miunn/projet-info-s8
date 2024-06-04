@@ -7,10 +7,10 @@ class ChatProvider extends ChangeNotifier {
   final ChatDatabaseInterface _chatDBInterface = ChatDatabaseInterface.instance;
 
   List<Chat> _chats = [];
-  Map<String, List<Chat>> _chatsByConversation = {};
+  Map<int, List<Chat>> _chatsByConversation = {};
 
   List<Chat> get chats => _chats;
-  Map<String, List<Chat>> get chatsByConversation => _chatsByConversation;
+  Map<int, List<Chat>> get chatsByConversation => _chatsByConversation;
 
   ChatProvider() {
     loadChats();

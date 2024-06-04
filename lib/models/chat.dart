@@ -2,7 +2,7 @@ class Chat {
   int? id;
   String? message;
   bool? isMe;
-  String? conversationId;
+  int? conversationId;
   DateTime? sentAt;
 
   Chat({this.id, this.message, this.isMe, this.conversationId, this.sentAt});

@@ -4,7 +4,9 @@ import 'package:uphf_generative_ai/models/chat.dart';
 import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 
 class PromptInput extends StatefulWidget {
-  const PromptInput({super.key});
+  const PromptInput({super.key, required this.conversationId});
+
+  final int conversationId;
 
   @override
   State<PromptInput> createState() => _PromptInputState();
@@ -31,6 +33,7 @@ class _PromptInputState extends State<PromptInput> {
             context.read<ChatProvider>().addChat(Chat(
               message: _controller.text,
               isMe: true,
+              conversationId: widget.conversationId,
               sentAt: DateTime.now(),
             ));
             _controller.clear();

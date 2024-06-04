@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:uphf_generative_ai/models/conversation.dart';
 
 import '../models/chat.dart';
 
@@ -11,14 +12,18 @@ class ChatDatabaseInterface {
 
   static const String databaseName = 'chat.db';
 
-  static const int versionNumber = 3;
+  static const int versionNumber = 10;
 
-  static const String tableName = 'Chat';
   static const String colId = 'id';
+
+  static const String chatTableName = 'Chat';
   static const String colMessage = 'message';
   static const String colIsMe = 'isMe';
   static const String colConversationId = 'conversationId';
   static const String colSentAt = 'sentAt';
+
+  static const String conversationTableName = 'Conversation';
+  static const String colName = 'name';
 
   Future<Database> get database async {
     if (_database != null && _database!.isOpen) {
@@ -38,28 +43,52 @@ class ChatDatabaseInterface {
     var db = await openDatabase(
       path,
       version: versionNumber,
+      onConfigure: _onConfigure,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
     return db;
   }
 
+  _onConfigure(Database db) async {
+    await db.execute('PRAGMA foreign_keys = ON');
+  }
+
   _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE $tableName (
+      CREATE TABLE $conversationTableName (
+        $colId INTEGER PRIMARY KEY AUTOINCREMENT,
+        $colName TEXT NOT NULL
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE $chatTableName (
         $colId INTEGER PRIMARY KEY AUTOINCREMENT,
         $colMessage TEXT NOT NULL,
         $colIsMe INTEGER NOT NULL,
-        $colConversationId TEXT,
-        $colSentAt TEXT NOT NULL
+        $colConversationId INTEGER NOT NULL,
+        $colSentAt TEXT NOT NULL,
+        FOREIGN KEY ($colConversationId) REFERENCES $conversationTableName($colId) ON DELETE CASCADE
       )
     ''');
+
+    // Insert default conversation
+    await db.insert(
+      conversationTableName,
+      Conversation(id: 0, name: 'Conversation').toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < newVersion) {
       await db.execute('''
-        DROP TABLE IF EXISTS $tableName
+        DROP TABLE IF EXISTS $chatTableName
+      ''');
+
+      await db.execute('''
+        DROP TABLE IF EXISTS $conversationTableName
       ''');
       await _onCreate(db, newVersion);
     }
@@ -67,7 +96,7 @@ class ChatDatabaseInterface {
 
   Future<List<Chat>> get chats async {
     final Database db = await database;
-    final List<Map<String, dynamic>> maps = await db.query(tableName);
+    final List<Map<String, dynamic>> maps = await db.query(chatTableName);
 
     return maps.map((e) => Chat.fromMap(e)).toList();
   }
@@ -75,7 +104,7 @@ class ChatDatabaseInterface {
   Future<List<Chat>> chatsByConversation(String conversationId) async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query(
-      tableName,
+      chatTableName,
       where: '$colConversationId = ?',
       whereArgs: [conversationId],
     );
@@ -86,7 +115,7 @@ class ChatDatabaseInterface {
   Future<int> insertChat(Chat chat) async {
     final Database db = await database;
     return await db.insert(
-      tableName,
+      chatTableName,
       chat.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -95,7 +124,7 @@ class ChatDatabaseInterface {
   Future<int> updateChat(Chat chat) async {
     final Database db = await database;
     return await db.update(
-      tableName,
+      chatTableName,
       chat.toMap(),
       where: '$colId = ?',
       whereArgs: [chat.id],
@@ -105,7 +134,7 @@ class ChatDatabaseInterface {
   Future<int> deleteChat(int id) async {
     final Database db = await database;
     return await db.delete(
-      tableName,
+      chatTableName,
       where: '$colId = ?',
       whereArgs: [id],
     );
@@ -114,9 +143,44 @@ class ChatDatabaseInterface {
   Future<int> deleteChatsByConversation(String conversationId) async {
     final Database db = await database;
     return await db.delete(
-      tableName,
+      chatTableName,
       where: '$colConversationId = ?',
       whereArgs: [conversationId],
+    );
+  }
+
+  Future<List<Conversation>> get conversations async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(conversationTableName);
+
+    return maps.map((e) => Conversation.fromMap(e)).toList();
+  }
+
+  Future<int> insertConversation(Conversation conversation) async {
+    final Database db = await database;
+    return await db.insert(
+      conversationTableName,
+      conversation.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<int> updateConversation(Conversation conversation) async {
+    final Database db = await database;
+    return await db.update(
+      conversationTableName,
+      conversation.toMap(),
+      where: '$colId = ?',
+      whereArgs: [conversation.id],
+    );
+  }
+
+  Future<int> deleteConversation(String id) async {
+    final Database db = await database;
+    return await db.delete(
+      conversationTableName,
+      where: '$colId = ?',
+      whereArgs: [id],
     );
   }
 }
