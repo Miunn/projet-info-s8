@@ -151,7 +151,7 @@ class ChatDatabaseInterface {
 
   Future<List<Conversation>> get conversations async {
     final Database db = await database;
-    final List<Map<String, dynamic>> maps = await db.query(conversationTableName);
+    final List<Map<String, dynamic>> maps = await db.query(conversationTableName, orderBy: '$colId ASC');
 
     return maps.map((e) => Conversation.fromMap(e)).toList();
   }
@@ -175,7 +175,7 @@ class ChatDatabaseInterface {
     );
   }
 
-  Future<int> deleteConversation(String id) async {
+  Future<int> deleteConversation(int id) async {
     final Database db = await database;
     return await db.delete(
       conversationTableName,

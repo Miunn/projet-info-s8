@@ -29,7 +29,7 @@ class ConversationProvider extends ChangeNotifier {
     loadConversations();
   }
 
-  Future<void> deleteConversation(String id) async {
+  Future<void> deleteConversation(int id) async {
     await _chatDBInterface.deleteConversation(id);
     loadConversations();
   }
