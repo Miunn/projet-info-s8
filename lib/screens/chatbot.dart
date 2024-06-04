@@ -44,7 +44,7 @@ class _ChatBotState extends State<ChatBot> {
                 },
               ),
             ),
-            PromptInput(),
+            const PromptInput(),
           ],
         ),
       ),
