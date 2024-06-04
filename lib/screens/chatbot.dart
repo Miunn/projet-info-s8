@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uphf_generative_ai/models/emoji_text.dart';
 import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 import 'package:uphf_generative_ai/providers/conversation_notifier.dart';
 import 'package:uphf_generative_ai/widgets/prompt_input.dart';
@@ -86,7 +88,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
             tabs: [
               for (Conversation conversation
                   in conversationProvider.conversations)
-                Tab(text: conversation.name ?? 'Conversation'),
+                Tab(text: "${EmojiList.list[Random().nextInt(EmojiList.listLength)]} ${conversation.name ?? 'Conversation'}"),
             ],
           ),
         ),
@@ -103,7 +105,6 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                     child: Consumer<ChatProvider>(
                       builder: (BuildContext context, ChatProvider chatProvider,
                           Widget? child) {
-
                         if (chatProvider.chatsByConversation[conversation.id ?? "0"] == null) {
                           return const Center(
                             child: null,
@@ -128,6 +129,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                       },
                     ),
                   ),
+                  const ChatBubble(text: "", isMe: false, loading: true),
                   PromptInput(
                     conversationId: conversation.id ?? 0,
                   ),
