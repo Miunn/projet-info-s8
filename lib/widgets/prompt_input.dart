@@ -31,7 +31,7 @@ class _PromptInputState extends State<PromptInput> {
         ),
         contentPadding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 20.0),
         filled: true,
-        fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        fillColor: Theme.of(context).colorScheme.surfaceVariant,
         hintStyle: TextStyle(
           color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
         ),

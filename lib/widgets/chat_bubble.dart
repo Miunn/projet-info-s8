@@ -38,12 +38,10 @@ class ChatBubble extends StatelessWidget {
             ),
             child: SizedBox(
               width: 200,
-              child: Flexible(
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: isMe ? Colors.white : Colors.black,
-                  ),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: isMe ? Colors.white : Colors.black,
                 ),
               ),
             ),
