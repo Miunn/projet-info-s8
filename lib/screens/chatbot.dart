@@ -1,8 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:uphf_generative_ai/models/emoji_text.dart';
 import 'package:uphf_generative_ai/providers/chat_notifier.dart';
@@ -29,11 +27,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
   _scrollToBottom() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(seconds: 2),
-      curve: Curves.fastOutSlowIn,
-    );
+    _scrollController.jumpTo(_scrollController.position.minScrollExtent);
   }
 
   @override
@@ -44,6 +38,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
     if (_scrollController.hasClients) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     }
+
     return DefaultTabController(
       length: conversationProvider.conversations.length,
       child: Scaffold(
@@ -96,10 +91,11 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
             }),
             IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () {
-                  conversationProvider.addConversation(Conversation(
+                onPressed: () async {
+                  await conversationProvider.addConversation(Conversation(
                     name: 'Nouvelle conversation',
                   ));
+                  setState(() {});
                 }),
           ],
           bottom: TabBar(
@@ -120,6 +116,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
               Padding(
                 padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 12.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Consumer(builder: (BuildContext context,
                         ChatProvider chatProvider, Widget? child) {
@@ -133,6 +130,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                       return Expanded(
                         child: ListView(
                           controller: _scrollController,
+                            reverse: true,
                             children: [
                           ...chatProvider
                               .chatsByConversation[conversation.id ?? "0"]!
@@ -149,7 +147,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                                   loading: true,
                                 )
                               : const SizedBox.shrink(),
-                        ]),
+                        ].reversed.toList()),
                       );
                     }),
                     PromptInput(
@@ -159,7 +157,10 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                           displayLoading = true;
                         });
                       },
-                      receiveCallback: () {
+                      receiveCallback: (Chat? chat) async {
+                        if (chat != null) {
+                          await context.read<ChatProvider>().addChat(chat);
+                        }
                         setState(() {
                           displayLoading = false;
                         });

@@ -15,26 +15,24 @@ class APIInterface {
     String payload = json.encode(history.map((e) => e.toApi()).toList());
 
     debugPrint(payload);
-    /*final resp = await http.get(Uri.parse('http://192.168.209.157:8000/ask?prompt=$payload'));
+    final resp = await http.get(Uri.parse('https://summary-fresh-katydid.ngrok-free.app/ask?prompt=$payload'), headers: {
+      'ngrok-skip-browser-warning': 'true',
+    });
     debugPrint("Response: ${resp.body}");
     if (resp.statusCode != 200) {
-      return null;
+      return Chat(
+        conversationId: conversationId,
+        isMe: false,
+        message: "Impossible de contacter l'API",
+        sentAt: DateTime.now(),
+      );
     }
 
     Map<String, dynamic> data = jsonDecode(resp.body) as Map<String, dynamic>;
     return Chat(
       conversationId: conversationId,
       isMe: false,
-      message: data['message'] as String,
-      sentAt: DateTime.now(),
-    );*/
-
-    await Future.delayed(const Duration(seconds: 2));
-
-    return Chat(
-      conversationId: conversationId,
-      isMe: false,
-      message: "Test",
+      message: (data['content'] ?? "Erreur lors de la réponse API") as String,
       sentAt: DateTime.now(),
     );
   }

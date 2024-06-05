@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 import 'package:uphf_generative_ai/providers/conversation_notifier.dart';
 import 'package:uphf_generative_ai/screens/chatbot.dart';
+import 'package:uphf_generative_ai/screens/suggestions.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
         child: const ChatBot()
     ),
-    const Text('Profile'),
+    const Suggestions(),
   ];
 
   void _onItemTapped(int index) {

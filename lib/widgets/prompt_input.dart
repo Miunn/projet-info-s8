@@ -9,7 +9,7 @@ class PromptInput extends StatefulWidget {
 
   final int conversationId;
   final void Function(Chat chat) sendCallback;
-  final void Function() receiveCallback;
+  final void Function(Chat? chat) receiveCallback;
 
   @override
   State<PromptInput> createState() => _PromptInputState();
@@ -41,15 +41,11 @@ class _PromptInputState extends State<PromptInput> {
               sentAt: DateTime.now(),
             );
             _controller.clear();
-            FocusManager.instance.primaryFocus?.unfocus();
 
             widget.sendCallback(newChat);
             context.read<ChatProvider>().addChat(newChat);
             APIInterface.instance.askPrompt(newChat, widget.conversationId, conversation).then((Chat? chat) {
-              widget.receiveCallback();
-              if (chat != null) {
-                context.read<ChatProvider>().addChat(chat);
-              }
+              widget.receiveCallback(chat);
             });
           },
         ),
