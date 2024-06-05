@@ -25,6 +25,13 @@ class Chat {
     sentAt = DateTime.parse(map['sentAt']);
   }
 
+  Map<String, Object?> toApi() {
+    return {
+      'role': (isMe ?? true) ? 'user' : 'assistant',
+      'content': message ?? '',
+    };
+  }
+
   @override
   String toString() {
     return 'Chat{id: $id, message: $message, isMe: $isMe, conversationId: $conversationId, sentAt: $sentAt}';
