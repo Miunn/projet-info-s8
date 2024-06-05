@@ -1,3 +1,5 @@
+import json
+import re
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -11,8 +13,11 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id,
-    torch_dtype="auto", 
+    torch_dtype="auto",
+    trust_remote_code=True,
 )
+
+tokenizer.chat_template = "{{ bos_token }}{%for message in messages %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{{ '<start_of_turn>' + role + ' ' + message['content'] | trim + '<end_of_turn>' }}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model'}}{% endif %}"
 
 model.to(device)
 
@@ -22,13 +27,14 @@ def askGPT(message:list):
     global tokenizer
 
     messages = [
-        {"role": "user", "content": "la cafeteria de l'université ouvre a 12:30, batiment 1 se trouve en bas du campus a coté de la cafeteria, batiment 2 se trouve au milieu du campus a 2 minutes du batiment 1 et batiment 3 se trouve au bout du campus a 5 minutes du batiment 2, l'université est ouverte de 8h a 20h et le parking est ouvert 24h/24 7J/7"}
+        {"role": "system", "content": "Vous êtes le chatbot de l'UPHF, votre rôle est d'assister et de répondre aux questions des utilisateurs."},
+        {"role": "assistant", "content": "Ok, je retiens que je suis un chatbot de l'UPHF et que mon rôle est d'assister et de répondre aux questions des utilisateurs."},
     ]
 
-    if not list(message):
+    if not json.loads(message):
         return "Veuillez poser une question..."
-    
-    messages + list(message)
+
+    messages = messages + json.loads(message) 
 
     input_ids = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True, return_tensors="pt")
 
@@ -42,6 +48,10 @@ def askGPT(message:list):
     )
 
     gen_text = tokenizer.decode(gen_tokens[0])
+
+    gen_text = gen_text.split("<start_of_turn>")[-1].strip()
+    pattern = r"model (.*?)<eos>"
+    gen_text = re.search(pattern, gen_text).group(1)
 
     return gen_text
 
@@ -63,4 +73,4 @@ def getAnswer():
 
 if __name__ == "__main__":
     print(str(model.get_memory_footprint()*10**-9) + ' GB')
-    app.run(host='127.0.0.1', port=8000)
+    app.run(host='127.0.0.1', port=34197)
