@@ -29,14 +29,21 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
   _scrollToBottom() {
-    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(seconds: 2),
+      curve: Curves.fastOutSlowIn,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     ConversationProvider conversationProvider =
         context.watch<ConversationProvider>();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
+
+    if (_scrollController.hasClients) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
+    }
     return DefaultTabController(
       length: conversationProvider.conversations.length,
       child: Scaffold(
