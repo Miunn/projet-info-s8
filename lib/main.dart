@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uphf_generative_ai/providers/chat_notifier.dart';
+import 'package:uphf_generative_ai/providers/conversation_notifier.dart';
 import 'package:uphf_generative_ai/screens/chatbot.dart';
+import 'package:uphf_generative_ai/screens/suggestions.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -42,9 +48,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgets = <Widget>[
-    ChatBot(),
-    Text('Profile'),
+  static final List<Widget> _widgets = <Widget>[
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (BuildContext context) => ChatProvider()),
+        ChangeNotifierProvider(create: (BuildContext context) => ConversationProvider()),
+      ],
+        child: const ChatBot()
+    ),
+    const Suggestions(),
   ];
 
   void _onItemTapped(int index) {
@@ -62,15 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
         child: _widgets.elementAt(_selectedIndex),
       ),
