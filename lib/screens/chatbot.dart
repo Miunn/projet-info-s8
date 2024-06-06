@@ -118,7 +118,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Consumer(builder: (BuildContext context,
+                    Consumer<ChatProvider>(builder: (BuildContext context,
                         ChatProvider chatProvider, Widget? child) {
                       if (chatProvider
                               .chatsByConversation[conversation.id ?? "0"] ==
