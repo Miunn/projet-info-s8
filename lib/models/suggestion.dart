@@ -1,21 +1,24 @@
-class Suggestions {
+import 'package:intl/intl.dart';
+
+class Suggestion {
   int? id;
   String? message;
   String? user;
-  int? createdAt; // Timestamp
+  DateTime? createdAt; // Timestamp
 
-  Suggestions({
+  Suggestion({
     this.id,
     this.message,
     this.user,
     this.createdAt,
   });
 
-  Suggestions.fromMap(Map<String, dynamic> map) {
+  Suggestion.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     message = map['message'];
     user = map['user'];
-    createdAt = map['created_at'];
+    final formatter = DateFormat('EEE, d MMM yyyy HH:mm:ss');
+    createdAt = formatter.parse(map['created_at']);
   }
 
   Map<String, dynamic> toMap() {
@@ -23,7 +26,7 @@ class Suggestions {
       'id': id,
       'message': message,
       'user': user,
-      'created_at': createdAt,
+      'created_at': createdAt?.toIso8601String(),
     };
   }
 

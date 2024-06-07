@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
         child: const ChatBot()
     ),
-    const Suggestions(),
+    const SuggestionsScreen(),
   ];
 
   void _onItemTapped(int index) {
