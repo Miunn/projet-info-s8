@@ -78,14 +78,14 @@ class ChatBubble extends StatelessWidget {
             children: <Widget>[
               Visibility(visible: !isMe, child: const SizedBox(width: 45,)),
               Visibility(
-                  visible: !isMe,
+                  visible: (!isMe && !loading),
                   child: IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.thumb_up_alt_outlined)
                   )
               ),
               Visibility(
-                  visible: !isMe,
+                  visible: (!isMe && !loading),
                   child: IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.thumb_down_alt_outlined)
