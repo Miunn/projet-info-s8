@@ -15,7 +15,7 @@ class APIInterface {
     String payload = json.encode(history.map((e) => e.toApi()).toList());
 
     debugPrint(payload);
-    final resp = await http.get(Uri.parse('https://summary-fresh-katydid.ngrok-free.app/ask?prompt=$payload'), headers: {
+    final resp = await http.get(Uri.parse('https://gpt.lafontaine.io/ask?prompt=$payload'), headers: {
       'ngrok-skip-browser-warning': 'true',
     });
     debugPrint("Response: ${resp.body}");
