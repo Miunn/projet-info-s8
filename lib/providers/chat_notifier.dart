@@ -47,12 +47,22 @@ class ChatProvider extends ChangeNotifier {
 
   Future<void> toggleLikeChat(Chat chat) async {
     chat.ratedGood = !(chat.ratedGood ?? false);
+
+    if (chat.ratedGood == true) {
+      chat.ratedBad = false;
+    }
+
     await _chatDBInterface.updateChat(chat);
     loadChats();
   }
 
   Future<void> toggleDislikeChat(Chat chat) async {
     chat.ratedBad = !(chat.ratedBad ?? false);
+
+    if (chat.ratedBad == true) {
+      chat.ratedGood = false;
+    }
+
     await _chatDBInterface.updateChat(chat);
     loadChats();
   }
