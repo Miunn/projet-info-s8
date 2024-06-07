@@ -44,23 +44,26 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
         onRefresh: () {
           return loadSuggestions();
         },
-        child: ListView.builder(
-          itemCount: suggestions.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Card.filled(
-              child: ListTile(
-                title: Text(suggestions[index].message ?? ""),
-                subtitle: Row(
-                  children: [
-                    Text(suggestions[index].user ?? ""),
-                    const Spacer(),
-                    Text(formatter.format(suggestions[index].createdAt ?? DateTime.now())),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ListView.builder(
+            itemCount: suggestions.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card.filled(
+                child: ListTile(
+                  title: Text(suggestions[index].message ?? ""),
+                  subtitle: Row(
+                    children: [
+                      Text(suggestions[index].user ?? ""),
+                      const Spacer(),
+                      Text(formatter.format(suggestions[index].createdAt ?? DateTime.now())),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
-          physics: const AlwaysScrollableScrollPhysics(),
+              );
+            },
+            physics: const AlwaysScrollableScrollPhysics(),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

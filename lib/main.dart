@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 0, 129, 161)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Mon assistant UPHF'),
+      home: const MyHomePage(title: 'Mon UPHF'),
     );
   }
 }
@@ -88,9 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Chatbot',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.person),
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            selectedIcon: Icon(Icons.star),
+            icon: Icon(Icons.star_border_outlined),
+            label: 'Suggestions',
           ),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
