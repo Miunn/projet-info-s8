@@ -18,4 +18,15 @@ class SuggestionsAPIInterface {
     List<dynamic> data = jsonDecode(resp.body) as List<dynamic>;
     return data.map((e) => Suggestion.fromMap(e as Map<String, dynamic>)).toList();
   }
+
+  static Future<void> addSuggestion(Suggestion suggestion) async {
+    final resp = await http.post(
+        Uri.parse("http://db.projeticy.remicaulier.fr/post/suggestion"),
+        body: jsonEncode(suggestion.toMap()),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+    );
+    debugPrint("Response: ${resp.body}");
+  }
 }
