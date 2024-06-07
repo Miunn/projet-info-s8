@@ -56,6 +56,24 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app-logo.png"
+  min_sdk_version: 21
+  web:
+    generate: true
+    image_path: "assets/app-logo.png"
+    background_color: "#FFFFFF"
+    theme_color: "#7FC0D0"
+  windows:
+    generate: true
+    image_path: "assets/app-logo.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/app-logo.png"
+
 # The following section is specific to Flutter packages.
 flutter:
 
