@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uphf_generative_ai/models/emoji_text.dart';
@@ -49,7 +50,9 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title,),
+          title: Text(
+            widget.title,
+          ),
 
           actions: [
             Builder(builder: (context) {
@@ -129,25 +132,22 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                       }
                       return Expanded(
                         child: ListView(
-                          controller: _scrollController,
+                            controller: _scrollController,
                             reverse: true,
                             children: [
-                          ...chatProvider
-                              .chatsByConversation[conversation.id ?? "0"]!
-                              .map<Widget>((Chat chat) {
-                            return ChatBubble(
-                              text: chat.message!,
-                              isMe: chat.isMe ?? false,
-                            );
-                          }),
-                          (displayLoading)
-                              ? const ChatBubble(
-                                  text: '',
-                                  isMe: false,
+                              ...chatProvider
+                                  .chatsByConversation[conversation.id ?? "0"]!
+                                  .map<Widget>((Chat chat) {
+                                return ChatBubble(chat: chat);
+                              }),
+                              Visibility(
+                                visible: displayLoading,
+                                child: ChatBubble(
+                                  chat: Chat(message: "", isMe: false),
                                   loading: true,
-                                )
-                              : const SizedBox.shrink(),
-                        ].reversed.toList()),
+                                ),
+                              )
+                            ].reversed.toList()),
                       );
                     }),
                     PromptInput(

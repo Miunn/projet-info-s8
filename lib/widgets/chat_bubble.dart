@@ -1,18 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:uphf_generative_ai/providers/chat_notifier.dart';
 
+import '../models/chat.dart';
 import 'circle_avatar.dart';
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble(
-      {super.key,
-      required this.text,
-      required this.isMe,
-      this.loading = false});
+  const ChatBubble({super.key, required this.chat, this.loading = false});
 
-  final String text;
-  final bool isMe;
+  final Chat chat;
   final bool loading;
 
   @override
@@ -23,11 +20,12 @@ class ChatBubble extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment:
-                isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            mainAxisAlignment: (chat.isMe ?? false)
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (!isMe)
+              if (!(chat.isMe ?? false))
                 const SizedBox(
                   width: 30,
                   height: 30,
@@ -40,10 +38,12 @@ class ChatBubble extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
-                  color: isMe ? Colors.blue[400] : Colors.grey[200],
+                  color: (chat.isMe ?? false)
+                      ? Colors.blue[400]
+                      : Colors.grey[200],
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(isMe ? 20 : 0),
-                    topRight: Radius.circular(isMe ? 0 : 20),
+                    topLeft: Radius.circular((chat.isMe ?? false) ? 20 : 0),
+                    topRight: Radius.circular((chat.isMe ?? false) ? 0 : 20),
                     bottomLeft: const Radius.circular(20),
                     bottomRight: const Radius.circular(20),
                   ),
@@ -56,15 +56,17 @@ class ChatBubble extends StatelessWidget {
                       ? LoadingAnimationWidget.staggeredDotsWave(
                           color: Colors.black, size: 25.0)
                       : Text(
-                          text,
+                          "${chat.message}",
                           style: TextStyle(
-                            color: isMe ? Colors.white : Colors.black,
+                            color: (chat.isMe ?? false)
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                 ),
               ),
               const SizedBox(width: 10),
-              if (isMe)
+              if ((chat.isMe ?? false))
                 const SizedBox(
                   width: 30,
                   height: 30,
@@ -76,21 +78,37 @@ class ChatBubble extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              Visibility(visible: !isMe, child: const SizedBox(width: 45,)),
               Visibility(
-                  visible: (!isMe && !loading),
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.thumb_up_alt_outlined)
-                  )
-              ),
+                  visible: !(chat.isMe ?? false),
+                  child: const SizedBox(
+                    width: 45,
+                  )),
               Visibility(
-                  visible: (!isMe && !loading),
+                  visible: (!(chat.isMe ?? false) && !loading),
                   child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.thumb_down_alt_outlined)
-                  )
-              ),
+                      onPressed: () {
+                        if (chat.id == null || (chat.isMe ?? false)) {
+                          return;
+                        }
+
+                        context.read<ChatProvider>().toggleLikeChat(chat);
+                      },
+                      icon: (chat.ratedGood ?? false)
+                          ? const Icon(Icons.thumb_up, color: Colors.green)
+                          : const Icon(Icons.thumb_up_outlined))),
+              Visibility(
+                  visible: (!(chat.isMe ?? false) && !loading),
+                  child: IconButton(
+                      onPressed: () {
+                        if (chat.id == null || (chat.isMe ?? false)) {
+                          return;
+                        }
+
+                        context.read<ChatProvider>().toggleDislikeChat(chat);
+                      },
+                      icon: (chat.ratedBad ?? false)
+                          ? const Icon(Icons.thumb_down, color: Colors.red)
+                          : const Icon(Icons.thumb_down_outlined))),
             ],
           )
         ],
