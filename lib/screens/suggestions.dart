@@ -58,12 +58,27 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
                             title: Text(suggestions[index].message ?? ""),
                             subtitle: Row(
                               children: [
-                                Text(suggestions[index].user ?? ""),
-                                const Spacer(),
                                 Text(formatter.format(
                                     suggestions[index].createdAt ??
                                         DateTime.now())),
+                                const SizedBox(width: 8.0),
+                                Text(suggestions[index].user ?? ""),
                               ],
+                            ),
+                            trailing: (suggestions[index].upVoted ?? false)
+                                ? IconButton(
+                                    icon: Icon(Icons.star, color: Colors.yellow[700],),
+                                    onPressed: () async {
+                                      await SuggestionsAPIInterface.downvoteSuggestion(suggestions[index]);
+                                      loadSuggestions();
+                                    },
+                                  )
+                                : IconButton(
+                              icon: const Icon(Icons.star_outline),
+                              onPressed: () async {
+                                await SuggestionsAPIInterface.upvoteSuggestion(suggestions[index]);
+                                loadSuggestions();
+                              },
                             ),
                           ),
                         );
@@ -150,7 +165,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
                 );
               });
         },
-        child: const Icon(Icons.send),
+        child: const Icon(Icons.contact_support_outlined),
       ),
     );
   }

@@ -5,12 +5,14 @@ class Suggestion {
   String? message;
   String? user;
   DateTime? createdAt; // Timestamp
+  bool? upVoted;
 
   Suggestion({
     this.id,
     this.message,
     this.user,
     this.createdAt,
+    this.upVoted,
   });
 
   Suggestion.fromMap(Map<String, dynamic> map) {
@@ -19,6 +21,7 @@ class Suggestion {
     user = map['user'];
     final formatter = DateFormat('EEE, d MMM yyyy HH:mm:ss');
     createdAt = formatter.parse(map['created_at']);
+    upVoted = map['upvoted'] == 1;
   }
 
   Map<String, dynamic> toMap() {
@@ -27,11 +30,12 @@ class Suggestion {
       'message': message,
       'user': user,
       'created_at': createdAt?.toIso8601String(),
+      'upVoted': (upVoted ?? false) ? 1 : 0,
     };
   }
 
   @override
   String toString() {
-    return 'Suggestion{id: $id, message: $message, user: $user, createdAt: $createdAt}';
+    return 'Suggestion{id: $id, message: $message, user: $user, createdAt: $createdAt, upVoted: $upVoted}';
   }
 }
