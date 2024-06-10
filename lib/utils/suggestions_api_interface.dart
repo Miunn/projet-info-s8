@@ -29,4 +29,14 @@ class SuggestionsAPIInterface {
     );
     debugPrint("Response: ${resp.body}");
   }
+
+  static Future<void> upvoteSuggestion(Suggestion suggestion) async {
+    final resp = await http.post(Uri.parse("http://db.projeticy.remicaulier.fr/post/suggestion/upvote/${suggestion.id}"));
+    debugPrint("Response: ${resp.body}");
+  }
+
+  static Future<void> downvoteSuggestion(Suggestion suggestion) async {
+    final resp = await http.post(Uri.parse("http://db.projeticy.remicaulier.fr/post/suggestion/downvote/${suggestion.id}"));
+    debugPrint("Response: ${resp.body}");
+  }
 }
