@@ -148,9 +148,9 @@ def getAnswer():
 @app.route('/download/<platform>', methods=['GET'])
 def getFiles(platform:str):
     if platform == 'ios':
-        return send_file('C:\\Users\\robin\\Desktop\\Projet S8\\static\\images\\cry-car.gif')
+        return send_file('static\\images\\cry-car.gif')
     elif platform == 'android':
-        return send_file('C:\\Users\\robin\\Desktop\\Projet S8\\downloads\\app-release.apk')
+        return send_file('downloads\\app-release.apk')
     else:
         return "Error: Invalid OS type", 404
  
@@ -165,7 +165,7 @@ if __name__ == "__main__":
  
     print(f'Model Memory : {model.get_memory_footprint()*10**-9} GB')
  
-    vectorstore = init_context('C:\\Users\\robin\\Desktop\\Projet S8\\page_content_test.json')
+    vectorstore = init_context('page_content_test.json')
  
     #TODO: Clean data and make sure chunk sizes are around 1000 (keep single newlines for paragraph splits)
     #NOTE: Remove single newline replacements in json_parse
