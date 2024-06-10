@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/chat.dart';
@@ -14,11 +13,10 @@ class APIInterface {
     history.add(newChat);
     String payload = json.encode(history.map((e) => e.toApi()).toList());
 
-    debugPrint(payload);
     final resp = await http.get(Uri.parse('https://gpt.lafontaine.io/ask?prompt=$payload'), headers: {
       'ngrok-skip-browser-warning': 'true',
     });
-    debugPrint("Response: ${resp.body}");
+
     if (resp.statusCode != 200) {
       return Chat(
         conversationId: conversationId,
