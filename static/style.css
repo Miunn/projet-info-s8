@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Monocraft';
+    src: url(Monocraft.ttf) format('truetype');
+}
+
+* {
+    font-family: 'MonoCraft', monospace;
+}
+
+html,
+body {
+    user-select: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(10, 10, 10);
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 150px;
+}
+
+main {
+    width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 150px;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+h1,
+h2,
+p {
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    height: 150px;
+}
+
+.card:hover {
+    background-color: #2f2f2f;
+    cursor: pointer;
+}
+
+img {
+    max-width: 4rem;
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        gap: 50px;
+    }
+
+    main {
+        width: auto;
+        min-width: 300px;
+        grid-template-columns: 1fr;
+        margin: 0 50px;
+        gap: 50px;
+    }
+
+    .card {
+        height: 100px;
+    }
+}

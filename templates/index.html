@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <title>Télécharger le chatbot</title>
+</head>
+
+<body>
+    <h1>Télécharger le chatbot UPHF !</h1>
+
+    <main>
+        <div>
+            <h2>Télécharger<br>sur Android</h2>
+
+            <a href="{{ url_for('getFiles', platform='android') }}">
+            <div class="container">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{url_for('static', filename='images/android.svg')}}" alt="android">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Télécharger<br>sur iOS</h2>
+
+            <a href="{{ url_for('getFiles', platform='ios') }}">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{url_for('static', filename='images/ios.png')}}" alt="ios" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <div class="spacer"></div>
+
+    <footer>
+        <p>© 2024 - UPHF</p>
+    </footer>
+</body>
+
+</html>

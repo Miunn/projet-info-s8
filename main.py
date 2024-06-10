@@ -2,7 +2,7 @@ import json
 import time
 import torch
 from sys import argv
-from flask import Flask, send_file, jsonify, request
+from flask import Flask, send_file, jsonify, request, render_template
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
@@ -128,7 +128,7 @@ app = Flask(__name__)
  
 @app.route("/")
 def hello_world():
-    return "Hello, World!"
+    return render_template("index.html")
  
 @app.route("/ask", methods=['GET'])
 def getAnswer():
@@ -145,13 +145,12 @@ def getAnswer():
     torch.cuda.empty_cache()
     return jsonify({'role': 'assistant', 'content': answer})
  
-@app.route('/download', methods=['GET'])
-def getFiles():
-    os_type = request.args.get('platform', '')
-    if os_type == 'ios':
-        return send_file('C:/Users/robin/Desktop/Projet S8/downloads/image.png')
-    elif os_type == 'android':
-        return send_file('C:/Users/robin/Desktop/Projet S8/downloads/image.png')
+@app.route('/download/<platform>', methods=['GET'])
+def getFiles(platform:str):
+    if platform == 'ios':
+        return send_file('C:\\Users\\robin\\Desktop\\Projet S8\\static\\images\\cry-car.gif')
+    elif platform == 'android':
+        return send_file('C:\\Users\\robin\\Desktop\\Projet S8\\downloads\\app-release.apk')
     else:
         return "Error: Invalid OS type", 404
  
@@ -166,7 +165,7 @@ if __name__ == "__main__":
  
     print(f'Model Memory : {model.get_memory_footprint()*10**-9} GB')
  
-    vectorstore = init_context('C:\\Users\\test\\Documents\\GPT-ProjetInfo-ICy-S8\\aya\\page_content_test.json')
+    vectorstore = init_context('C:\\Users\\robin\\Desktop\\Projet S8\\page_content_test.json')
  
     #TODO: Clean data and make sure chunk sizes are around 1000 (keep single newlines for paragraph splits)
     #NOTE: Remove single newline replacements in json_parse
