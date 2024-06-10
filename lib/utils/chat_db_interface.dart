@@ -12,13 +12,15 @@ class ChatDatabaseInterface {
 
   static const String databaseName = 'chat.db';
 
-  static const int versionNumber = 10;
+  static const int versionNumber = 11;
 
   static const String colId = 'id';
 
   static const String chatTableName = 'Chat';
   static const String colMessage = 'message';
   static const String colIsMe = 'isMe';
+  static const String colRatedGood = 'ratedGood';
+  static const String colRatedBad = 'ratedBad';
   static const String colConversationId = 'conversationId';
   static const String colSentAt = 'sentAt';
 
@@ -67,6 +69,8 @@ class ChatDatabaseInterface {
         $colId INTEGER PRIMARY KEY AUTOINCREMENT,
         $colMessage TEXT NOT NULL,
         $colIsMe INTEGER NOT NULL,
+        $colRatedGood INTEGER DEFAULT 0 NOT NULL,
+        $colRatedBad INTEGER DEFAULT 0 NOT NULL,
         $colConversationId INTEGER NOT NULL,
         $colSentAt TEXT NOT NULL,
         FOREIGN KEY ($colConversationId) REFERENCES $conversationTableName($colId) ON DELETE CASCADE

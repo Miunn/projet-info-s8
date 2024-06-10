@@ -1,6 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:uphf_generative_ai/models/emoji_text.dart';
 import 'package:uphf_generative_ai/providers/chat_notifier.dart';
@@ -15,19 +18,84 @@ import '../widgets/chat_bubble.dart';
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
 
-  final String title = 'Mon assistant UPHF';
+  final String title = 'Mon UPHF';
 
   @override
   createState() => _ChatBotState();
 }
 
 class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
+  OverlayEntry? overlayLegalNoticeEntry;
   bool displayLoading = false;
 
   final ScrollController _scrollController = ScrollController();
 
   _scrollToBottom() {
     _scrollController.jumpTo(_scrollController.position.minScrollExtent);
+  }
+
+  void createOverlay() {
+    overlayLegalNoticeEntry = OverlayEntry(builder: (BuildContext context) {
+      return Positioned(
+        top: 0.0,
+        left: 0.0,
+        child: GestureDetector(
+          onTap: () {
+            removeOverlay();
+          },
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.all(20.0),
+            color: Colors.black.withOpacity(0.7),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                DefaultTextStyle(
+                  style: TextStyle(fontSize: 22.0, color: Colors.white),
+                  child: Text(
+                    "Avant d'utiliser le chatbot",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                DefaultTextStyle(
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  child: Text(
+                    "L'UPHF ne peut être tenue pour responsable des textes fournit par le chatbot. Ces textes sont à usage purement informatif, ne peuvent être utilisés comme source officielle et ne sont pas garantis sans erreur.",
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    });
+
+    Overlay.of(context).insert(overlayLegalNoticeEntry!);
+  }
+
+  void removeOverlay() {
+    overlayLegalNoticeEntry?.remove();
+    overlayLegalNoticeEntry?.dispose();
+    overlayLegalNoticeEntry = null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      createOverlay();
+    });
+  }
+
+  @override
+  void dispose() {
+    removeOverlay();
+    super.dispose();
   }
 
   @override
@@ -49,7 +117,9 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+          ),
 
           actions: [
             Builder(builder: (context) {
@@ -118,7 +188,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Consumer(builder: (BuildContext context,
+                    Consumer<ChatProvider>(builder: (BuildContext context,
                         ChatProvider chatProvider, Widget? child) {
                       if (chatProvider
                               .chatsByConversation[conversation.id ?? "0"] ==
@@ -129,25 +199,22 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                       }
                       return Expanded(
                         child: ListView(
-                          controller: _scrollController,
+                            controller: _scrollController,
                             reverse: true,
                             children: [
-                          ...chatProvider
-                              .chatsByConversation[conversation.id ?? "0"]!
-                              .map<Widget>((Chat chat) {
-                            return ChatBubble(
-                              text: chat.message!,
-                              isMe: chat.isMe ?? false,
-                            );
-                          }),
-                          (displayLoading)
-                              ? const ChatBubble(
-                                  text: '',
-                                  isMe: false,
+                              ...chatProvider
+                                  .chatsByConversation[conversation.id ?? "0"]!
+                                  .map<Widget>((Chat chat) {
+                                return ChatBubble(chat: chat);
+                              }),
+                              Visibility(
+                                visible: displayLoading,
+                                child: ChatBubble(
+                                  chat: Chat(message: "", isMe: false),
                                   loading: true,
-                                )
-                              : const SizedBox.shrink(),
-                        ].reversed.toList()),
+                                ),
+                              )
+                            ].reversed.toList()),
                       );
                     }),
                     PromptInput(

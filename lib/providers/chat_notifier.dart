@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:uphf_generative_ai/utils/chat_db_interface.dart';
 
@@ -14,6 +15,10 @@ class ChatProvider extends ChangeNotifier {
 
   ChatProvider() {
     loadChats();
+  }
+
+  Chat? getChatById(int id) {
+    return _chats.firstWhereOrNull((chat) => chat.id == id);
   }
 
   Future<void> loadChats() async {
@@ -37,6 +42,28 @@ class ChatProvider extends ChangeNotifier {
 
   Future<void> addChat(Chat chat) async {
     await _chatDBInterface.insertChat(chat);
+    loadChats();
+  }
+
+  Future<void> toggleLikeChat(Chat chat) async {
+    chat.ratedGood = !(chat.ratedGood ?? false);
+
+    if (chat.ratedGood == true) {
+      chat.ratedBad = false;
+    }
+
+    await _chatDBInterface.updateChat(chat);
+    loadChats();
+  }
+
+  Future<void> toggleDislikeChat(Chat chat) async {
+    chat.ratedBad = !(chat.ratedBad ?? false);
+
+    if (chat.ratedBad == true) {
+      chat.ratedGood = false;
+    }
+
+    await _chatDBInterface.updateChat(chat);
     loadChats();
   }
 }
