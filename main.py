@@ -9,7 +9,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
  
 forget = 0
-context_depth = 4
+context_depth = 6
 model_id = "google/gemma-1.1-2b-it"
 device = "cuda" if torch.cuda.is_available() else "cpu"
  
@@ -52,10 +52,8 @@ def init_context(file_path:str) -> Chroma:
     texts = load_txt(file_path)
  
     chunks = []
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, separators=["\n\n", "\n", " ", ""])
-    for text in texts:
-        chunks.extend(text_splitter.create_documents([text]))
- 
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0, separators=["\n\n","\n",".",";","\t"," ",""])
+    chunks.extend(text_splitter.create_documents(texts))
     embeddings_model = HuggingFaceBgeEmbeddings(
         model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
         model_kwargs={'device': device},
@@ -72,19 +70,26 @@ def init_context(file_path:str) -> Chroma:
     return Chroma.from_documents(chunks, embeddings_model)
  
  
-def best_context(prompt:str, vectorstore:Chroma) -> list:
- 
-    docs = vectorstore.similarity_search_with_relevance_scores(prompt, k=context_depth)
- 
-    #TODO : threshold for relevance score
-    #docs_filtered = [doc for doc in docs if abs(doc[1]) < 0.3]
-    docs_filtered = [doc for doc in docs]
-    docs_texts = [doc[0].page_content for doc in docs_filtered]
-    
-    print(f'{len(docs_filtered)} documents found')
- 
+def best_context(prompt: str, vectorstore: Chroma, relevance_threshold: float = 0.3, max_iterations: int = 10) -> list:
+  
+    for iteration in range(max_iterations):
+        docs = vectorstore.similarity_search_with_relevance_scores(prompt, k=context_depth)
+        
+        docs_filtered = [doc for doc in docs if abs(doc[1]) < relevance_threshold]
+        
+        if docs_filtered:
+            docs_texts = [doc[0].page_content for doc in docs_filtered]
+            
+            print(f'{len(docs_filtered)} documents found on iteration {iteration + 1}')
+            
+            context = [{"role": "system", "content": text} for text in docs_texts]
+            
+            return context
+
+    print('No highly relevant documents found within the given iterations.')
+    docs_texts = [doc[0].page_content for doc in docs[:context_depth]]
     context = [{"role": "system", "content": text} for text in docs_texts]
- 
+    
     return context
  
 def askGPT(message:list, context:list) -> str:
@@ -95,7 +100,7 @@ def askGPT(message:list, context:list) -> str:
  
     messages = []
     directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (l'Université Polytechnique des Hauts-de-France) pour les tâches de questions-réponses. Utilisez les éléments de contexte récupérés suivants pour répondre à la question. Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas. Utilisez un maximum de trois phrases et gardez la réponse concise"}
- 
+    #TODO: Improve directives
     client_msg = loads(message)
  
     if not client_msg:
@@ -103,8 +108,12 @@ def askGPT(message:list, context:list) -> str:
  
     if not context:
         return "Je n'ai pas trouvé de réponse à ta question..."
- 
-    messages.extend(context)
+    
+    cons = ""
+    for con in context:
+        cons += f"{con['content']}\n\n"
+    context = {"role": "system", "content": cons}
+    messages.append(context)
     messages.append(directive)
     if forget > 0 and len(client_msg) > forget:
         messages.extend(client_msg[-forget:])
@@ -117,10 +126,11 @@ def askGPT(message:list, context:list) -> str:
  
     gen_tokens = model.generate(
         input_ids,
-        max_new_tokens=300,
+        max_new_tokens=500,
         do_sample=True,
-        temperature=0.3,
+        temperature=0.3
     )
+    #TODO: Check possibility for optimization
  
     gen_text = tokenizer.decode(gen_tokens[0])
  
@@ -154,6 +164,7 @@ def getAnswer():
     print(f"Handling request at {t_fmt}")
     message = getLastMessage(content)
     context = best_context(message, vectorstore)
+    print(f"Context : {context}")
     answer = askGPT(content, context)
     print(f"Answer : {answer}")
     torch.cuda.empty_cache()
@@ -164,7 +175,7 @@ def getFiles(platform:str):
     if platform == 'ios':
         return send_file('static\\images\\cry-car.gif')
     elif platform == 'android':
-        return send_file('downloads\\app-release.apk')
+        return send_file('downloads\\mon_uphf.apk')
     else:
         return "Error: Invalid OS type", 404
  
@@ -180,7 +191,7 @@ if __name__ == "__main__":
     print(f'Model Memory : {model.get_memory_footprint()*10**-9} GB')
  
     #vectorstore = init_context('page_content_test.json')
-    vectorstore = init_context('site_text.txt')
+    vectorstore = init_context('site_textnew.txt')
  
     #TODO: Clean data and make sure chunk sizes are around 1000 (keep single newlines for paragraph splits)
     #NOTE: Remove single newline replacements in json_parse
