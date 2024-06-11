@@ -1,7 +1,7 @@
-import json
-import time
 import torch
 from sys import argv
+from json import load, loads, dumps
+from time import localtime, strftime
 from flask import Flask, send_file, jsonify, request, render_template
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -22,20 +22,34 @@ model = AutoModelForCausalLM.from_pretrained(model_id,
 tokenizer.chat_template = "{{ bos_token }}{%for message in messages %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{{ '<start_of_turn>' + role + ' ' + message['content'] | trim + '<end_of_turn>' }}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model'}}{% endif %}"
  
 model.to(device)
- 
-def init_context(json_file_path:str) -> Chroma:
- 
+
+def load_json(json_file_path:str) -> list:
+
     with open(json_file_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
+        data = load(file)
  
     texts = []
     for entry in data:
         text = entry.get('text', '')
         documents_content = entry.get('documents', '')
         if isinstance(documents_content, dict):
-            documents_content = json.dumps(documents_content)
+            documents_content = dumps(documents_content)
         combined_text = text + ' ' + documents_content
         texts.append(combined_text)
+    return texts
+
+def load_txt(txt_file_path:str) -> list:
+    
+    with open(txt_file_path, 'r', encoding='utf-8') as file:
+        data = file.readlines()
+
+    return data
+
+ 
+def init_context(file_path:str) -> Chroma:
+ 
+    #texts = load_json(file_path)
+    texts = load_txt(file_path)
  
     chunks = []
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200, separators=["\n\n", "\n", " ", ""])
@@ -82,7 +96,7 @@ def askGPT(message:list, context:list) -> str:
     messages = []
     directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (l'Université Polytechnique des Hauts-de-France) pour les tâches de questions-réponses. Utilisez les éléments de contexte récupérés suivants pour répondre à la question. Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas. Utilisez un maximum de trois phrases et gardez la réponse concise"}
  
-    client_msg = json.loads(message)
+    client_msg = loads(message)
  
     if not client_msg:
         return "Pose moi une question..."
@@ -119,7 +133,7 @@ def askGPT(message:list, context:list) -> str:
     return gen_text
  
 def getLastMessage(messages:list) -> str:
-    json_messages = json.loads(messages)
+    json_messages = loads(messages)
     last_message = json_messages[-1]['content']
     return last_message
  
@@ -135,8 +149,8 @@ def getAnswer():
     content = request.args.get('prompt', '')
     if not content:
         return jsonify({'role': 'assistant', 'content': 'Veuillez poser une question...'})
-    t = time.localtime()
-    t_fmt = time.strftime('%d/%m/%Y %H:%M:%S',t)
+    t = localtime()
+    t_fmt = strftime('%d/%m/%Y %H:%M:%S',t)
     print(f"Handling request at {t_fmt}")
     message = getLastMessage(content)
     context = best_context(message, vectorstore)
@@ -165,7 +179,8 @@ if __name__ == "__main__":
  
     print(f'Model Memory : {model.get_memory_footprint()*10**-9} GB')
  
-    vectorstore = init_context('page_content_test.json')
+    #vectorstore = init_context('page_content_test.json')
+    vectorstore = init_context('site_text.txt')
  
     #TODO: Clean data and make sure chunk sizes are around 1000 (keep single newlines for paragraph splits)
     #NOTE: Remove single newline replacements in json_parse
