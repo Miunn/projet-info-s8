@@ -15,6 +15,12 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle defaultBubbleTextStyle = TextStyle(
+      color: (chat.isMe ?? false)
+          ? Colors.white
+          : Colors.black,
+    );
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -59,31 +65,11 @@ class ChatBubble extends StatelessWidget {
                       : MarkdownBody(
                           data: "${chat.message}",
                           styleSheet: MarkdownStyleSheet(
-                            p: TextStyle(
-                              color: (chat.isMe ?? false)
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            h1: TextStyle(
-                              color: (chat.isMe ?? false)
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            h2: TextStyle(
-                              color: (chat.isMe ?? false)
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            h3: TextStyle(
-                              color: (chat.isMe ?? false)
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            a: TextStyle(
-                              color: (chat.isMe ?? false)
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
+                            p: defaultBubbleTextStyle,
+                            h1: defaultBubbleTextStyle,
+                            h2: defaultBubbleTextStyle,
+                            h3: defaultBubbleTextStyle,
+                            a: defaultBubbleTextStyle,
                           ),
                         ),
                 ),
