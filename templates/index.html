@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <title>Télécharger le chatbot</title>
 </head>
 
@@ -16,13 +16,14 @@
             <h2>Télécharger<br>sur Android</h2>
 
             <a href="{{ url_for('getFiles', platform='android') }}">
-            <div class="container">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{url_for('static', filename='images/android.svg')}}" alt="android">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{url_for('static', filename='images/android.svg')}}" alt="android">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div>
@@ -32,7 +33,7 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{{url_for('static', filename='images/ios.png')}}" alt="ios" />
+                            <img src="{{url_for('static', filename='images/ios.png')}}" alt="ios">
                         </div>
                     </div>
                 </div>
