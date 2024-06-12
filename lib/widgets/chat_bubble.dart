@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:uphf_generative_ai/providers/chat_notifier.dart';
@@ -14,6 +15,12 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle defaultBubbleTextStyle = TextStyle(
+      color: (chat.isMe ?? false)
+          ? Colors.white
+          : Colors.black,
+    );
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -55,12 +62,14 @@ class ChatBubble extends StatelessWidget {
                   child: (loading)
                       ? LoadingAnimationWidget.staggeredDotsWave(
                           color: Colors.black, size: 25.0)
-                      : Text(
-                          "${chat.message}",
-                          style: TextStyle(
-                            color: (chat.isMe ?? false)
-                                ? Colors.white
-                                : Colors.black,
+                      : MarkdownBody(
+                          data: "${chat.message}",
+                          styleSheet: MarkdownStyleSheet(
+                            p: defaultBubbleTextStyle,
+                            h1: defaultBubbleTextStyle,
+                            h2: defaultBubbleTextStyle,
+                            h3: defaultBubbleTextStyle,
+                            a: defaultBubbleTextStyle,
                           ),
                         ),
                 ),
