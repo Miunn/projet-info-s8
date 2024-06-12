@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="uphf_generative_ai"
+        android:label="Mon UPHF"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
