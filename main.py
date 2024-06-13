@@ -12,7 +12,17 @@ forget = 0
 context_depth = 6
 model_id = "google/gemma-1.1-2b-it"
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model, tokenizer = None, None
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id,
+    torch_dtype="auto",
+    attn_implementation="sdpa"
+)
+
+tokenizer.chat_template = "{{ bos_token }}{%for message in messages %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{{ '<start_of_turn>' + role + ' ' + message['content'] | trim + '<end_of_turn>' }}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model'}}{% endif %}"
+
+model.to(device)
+
 
 def load_txt(txt_file_path:str) -> list:
     
@@ -20,23 +30,6 @@ def load_txt(txt_file_path:str) -> list:
         data = file.readlines()
 
     return data
-
-def init_model() -> tuple:
-
-    global model_id
-    global device
-
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(model_id,
-        torch_dtype="auto",
-        attn_implementation="sdpa"
-    )
-
-    tokenizer.chat_template = "{{ bos_token }}{%for message in messages %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{{ '<start_of_turn>' + role + ' ' + message['content'] | trim + '<end_of_turn>' }}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model'}}{% endif %}"
-
-    model.to(device)
-
-    return model, tokenizer
 
 
 def init_context(file_path:str) -> Chroma:
@@ -48,6 +41,7 @@ def init_context(file_path:str) -> Chroma:
     chunks.extend(text_splitter.create_documents(texts))
     embeddings_model = HuggingFaceBgeEmbeddings(
         model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+        #model_name='intfloat/multilingual-e5-large-instruct',
         model_kwargs={'device': device},
         encode_kwargs={'normalize_embeddings': True},
         query_instruction=""
@@ -179,8 +173,6 @@ if __name__ == "__main__":
             print("Usage: python main.py [--forget=<int>]")
             exit(1)
 
-    vectorstore = init_context('output.txt')
+    vectorstore = init_context('site_text_parsed.txt')
     
-    tokenizer, model = init_model()
-
     app.run(host='127.0.0.1', port=34197)
