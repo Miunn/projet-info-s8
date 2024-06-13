@@ -60,6 +60,8 @@ def best_context(prompt: str, vectorstore: Chroma, relevance_threshold: float = 
 
     for iteration in range(max_iterations):
         docs = vectorstore.similarity_search_with_relevance_scores(prompt, k=context_depth)
+
+        print([doc[1] for doc in docs])
         
         docs_filtered = [doc for doc in docs if abs(doc[1]) < relevance_threshold]
         
@@ -116,7 +118,6 @@ def askGPT(message:list, context:list) -> str:
         do_sample=True,
         temperature=0.3
     )
-    #TODO: Check possibility for optimization
 
     gen_text = tokenizer.decode(gen_tokens[0])
 
@@ -173,6 +174,6 @@ if __name__ == "__main__":
             print("Usage: python main.py [--forget=<int>]")
             exit(1)
 
-    vectorstore = init_context('site_text_parsed.txt')
+    vectorstore = init_context('site_text_new.txt')
     
     app.run(host='127.0.0.1', port=34197)
