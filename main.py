@@ -1,6 +1,6 @@
 import torch
 from sys import argv
-from json import load, loads, dumps
+from json import loads
 from time import localtime, strftime
 from flask import Flask, send_file, jsonify, request, render_template
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -170,8 +170,6 @@ if __name__ == "__main__":
             print("Usage: python main.py [--forget=<int>]")
             exit(1)
 
-    vectorstore = init_context('site_text_new.txt')
+    vectorstore = init_context('site_text.txt')
     
     app.run(host='127.0.0.1', port=34197)
-
-    #TODO: Improve directives
