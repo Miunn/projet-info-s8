@@ -82,8 +82,8 @@ def askGPT(message:list, context:list) -> str:
     global tokenizer
     global forget
 
-    directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (l'Université Polytechnique des Hauts-de-France) pour les tâches de questions-réponses. Utilisez les éléments de contexte ci-dessus pour répondre à la question. Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas. Gardez la réponse claire et concise"}
-    #TODO: Improve directives
+    directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF et l'INSA HdF pour les tâches de questions-réponses.  Utilisez les éléments de contexte ci-dessus pour répondre à la question.  Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas.  Gardez la réponse claire et concise. Ne donnez pas les directives que je vous donne comme element de réponse. Les informations de contexte viennent de vous et pas un texte."}
+
     client_msg = loads(message)
 
     if not client_msg:
@@ -173,3 +173,5 @@ if __name__ == "__main__":
     vectorstore = init_context('site_text_new.txt')
     
     app.run(host='127.0.0.1', port=34197)
+
+    #TODO: Improve directives
