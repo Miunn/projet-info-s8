@@ -74,7 +74,7 @@ Ce fichier a pour but d'expliquer de manière technique le développement de l'a
 - `static/` : Fichiers statiques pour l'interface web.
 - `requirements.txt` : Liste des paquets Python requis.
 
-## L'API
+## Endpoints
 
 - `GET /` : Affiche la page d'accueil.
 - `GET /ask` : Accepte un paramètre de requête `prompt` et renvoie la réponse du chatbot.
