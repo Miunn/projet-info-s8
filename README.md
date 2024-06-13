@@ -1,6 +1,6 @@
 # Chatbot avec Réponses Contextuelles
 
-Ce dépôt contient une implémentation d'un chatbot utilisant PyTorch, Transformers et Flask. Le chatbot utilise un modèle de langage large pour générer des réponses et utilise un magasin vectoriel pour une compréhension contextuelle.
+Ce dépôt contient une implémentation d'un chatbot pour L'UPHF utilisant PyTorch, Transformers et Flask. Le chatbot utilise un modèle de génération de texte pour générer des réponses et utilise une base de données vectoriel pour une optimisation contextuelle.
 
 ## Table des Matières
 - [Chatbot avec Réponses Contextuelles](#chatbot-avec-réponses-contextuelles)
