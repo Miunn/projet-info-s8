@@ -1,6 +1,7 @@
 # UPHF - GPT - Generative AI ChatBot
 
 Ce dépôt contient une implémentation d'un chatbot pour L'UPHF utilisant PyTorch, Transformers et Flask. Le chatbot utilise un modèle de génération de texte pour générer des réponses et utilise une base de données vectoriel pour une optimisation contextuelle.
+Ce fichier a pour but d'expliquer de manière technique le développement de l'application, pour de plus amples informations se référer à [General - README.md](https://github.com/Miunn/projet-info-s8/blob/master/README.md)
 
 ## Table des Matières
 - [Chatbot avec Réponses Contextuelles](#chatbot-avec-réponses-contextuelles)
