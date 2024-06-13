@@ -1472,37 +1472,11 @@ Les formations de l’INSA Hauts-de-France sont adossées à la recherche grâce
 L'Ecole Doctorale Polytechnique Hauts-de-France (ED PHF n°635), pilotée par l'Université Polytechnique Hauts-de-France (UPHF), co-accréditée avec l'Institut National des Sciences Appliquées Hauts-de-France (INSA HdF), associée à l'Institut Catholique de Lille (ICL), rassemble un potentiel de plus de 160 enseignants-chercheurs habilités à diriger les recherches, 4 laboratoires d'accueil dont 2 UMR CNRS pour environ 250 doctorants et environ 45 thèses soutenues annuellement.
 
 
-Démarche Qualité et certifications
-Une démarche d’amélioration continue est mise en oeuvre depuis plusieurs années à l'INSA Hauts-de-France. Elle a conduit à l’obtention en 2017 de la certification ISO 9001:2015, confirmée en 2021 puis en 2023. Cette certification vise à l’amélioration continue, et est tournée délibérément vers l’humain (étudiants tous statuts, personnels tous statuts, industriels partenaires, ...).
-
-La politique Qualité de l’INSA Hauts-de-France
-Cette démarche s’appuie sur une politique définie par la Direction et qui a pour objectifs :
-Proposer aux étudiants de l’INSA Hauts-de-France un cadre de formation propice au développement personnel et à l’insertion professionnelle;
-Recruter les étudiants selon des critères d’admission cohérents avec les objectifs de la formation;
-Délivrer des diplômes d’ingénieurs en adéquation avec les besoins actuels et futurs des entreprises et des services, tant au niveau national qu’international;
-Assurer au personnel de l’INSA Hauts-de-France, par le biais d’une convention d’objectifs et de moyens signée avec l’UPHF, un environnement de travail performant permettant l’épanouissement personnel et professionnel;
-Répondre à toutes les exigences applicables de la norme ISO 9001:2015 pour pérenniser la certification obtenue.
-Le périmètre couvre actuellement les formations d’ingénieurs.
-
-La démarche Qualité couvre 12 processus :
-Les processus de « management » : Piloter la Stratégie, Manager la Qualité
-Les processus de « réalisation » : Concevoir et Adapter la formation, Assurer la Formation, Recruter les élèves ingénieurs
-Les processus « support » : Gestion administrative, Gestion financière, Relations internationales, Relations entreprises, Gestion des équipements et infrastructures, Communication interne et externe
-
-Amélioration
-La démarche d'amélioration passe par la gestion : 
-de l'évaluation des enseignements et des formations;
-de questionnaires auprès des étudiants, personnels et industriels;
-de requêtes et suggestions émises par toute personne, qu'elle soit interne ou externe à l'INSA Hauts-de-France. 
-La cellule Qualité organise le traitement de toutes ces données avec les pilotes et référents concernés.
-
-L'amélioration continue s'illustre ainsi par la définition de plans d'actions permettant de répondre au mieux aux sollicitations.
-
 Certifications
 Norme ISO 9001:2015
 L'INSA Hauts-de-France est certifiée ISO 9001:2015. 
 
-Contact
+
 La cellule Qualité
 Mail : cellule.qualite@insa-hdf.fr
 Tél : 03.27.51.13.59 | 03.27.51.13.48
@@ -1546,51 +1520,12 @@ Celle-ci se manifeste à travers plusieurs champs d’action.
 Les champs d’action : l’ouverture Sociale
 Actions vers les collèges et lycées :
 
-Programme « INSA, Je veux, Je peux » :
-
-Cordée de la réussite, PRREL Ambition (Programme Régional de Réussite en Etudes Longues)
-Cordée de la Réussite : CLAED (Collégiens Lycéens Aujourd’hui Etudiants Demain) 
-Ces dispositifs ont pour but d’accompagner les collégiens et les lycéens vers les études supérieures en particulier vers les formations de l’INSA Hauts-de-France.
-
-Bourse d’installation pour les ex-boursiers de Terminale
-
-Programme « INSA, je veux, je peux » 
-
-Ce programme s’appuie sur le Programme Régional de Réussite en Etudes Longues, le PRREL Ambition & la Cordée de la Réussite « INSA, je veux, je peux »
-Les Cordées de la Réussite permettent d’instituer un partenariat entre des établissements de l'enseignement supérieur et des collèges et lycées situés dans des quartiers prioritaires. Les Cordées ont pour objectif de promouvoir l'égalité des chances et la réussite des jeunes face à l'entrée dans l'enseignement supérieur. Elles sont portées par le ministère de l’enseignement supérieur et de la recherche et par le ministère de la politique de la ville. A Valenciennes, la Cordée « Ingénieur, je veux, je peux » a été labellisée en octobre 2010 par le Ministère de l’Education Nationale.
-
-L’association étudiante Egalité des Chances by INSA organise du tutorat grâce à la participation d’étudiants de 1ère année en Sciences et Humanités pour l’ingénieur mais aussi grâce aux étudiants en Formation Ingénieur sous Statut Etudiant de 3, 4, 5e année.
 
 Bourse d’accueil de la fondation INSA 
-
 Le groupe INSA, à l’aide de sa Fondation, donne une aide à l’installation des nouveaux étudiants, boursiers français l’année précédente en Terminale
 Le montant de la bourse est de 500€ (financer par la Fondation INSA et l’INSA Hauts-de-France).
 En 2020-2021, 10 étudiants de 1ère année en Sciences et Humanités pour l’ingénieur de l’INSA Hauts-de-France en ont bénéficié
 
-Carte des lycées et collèges
-Cordée CLAED : Collégiens, Lycéens Aujourd’hui, Etudiants Demain 
-Cette cordée est portée par l’UPHF et existe depuis 2012.
-Elle noue un partenariat avec 5 collèges et 7 lycées qui consiste en une visite du campus, une participation à des ateliers en sciences et en humanités.
-Un tutorat est assuré par des étudiants de licence pour les lycéens.
-
-[Visuel carte à ajouter - non exploitable]
- 
-Popularisation des Mathématiques 
-sont notamment organisés : Des stages de Seconde ...
-
-Les champs d’action : Parité Femme-Homme
-Depuis 2017, une équipe au sein de l’association EDC by INSA (Egalité des Chances by INSA) œuvre pour la parité Femme – Homme. Elle a pour but de sensibiliser les étudiants et personnels sur les propos sexistes.
-Une exposition sur les propos sexistes sera proposée en 2022.
-
-Par ailleurs, deux autres associations œuvrent pour la parité Femme-Homme :
-
-Association « INSAthénas »:
-Promotion les métiers scientifiques et techniques auprès des filles,
-Aide aux étudiantes à trouver leur place
-
-L-Décodent l’@venir : Département Informatique : 
-Encouragement aux filles pour aller plus nombreuses vers les études en informatique
-Stages collectifs pour des collégiennes
 
 Les champs d'action : Handicap
 Une cellule « Handicap » existe au sein de l’UPHF, relayée dans l’INSA Hauts-de-France par une mission Handicap (lien vers page Mission Handicap INSA HdF), pour les étudiants et les personnels en situation de handicap.
@@ -1626,52 +1561,23 @@ Par des actions et des initiatives diverses : entre activités pédagogiques, cr
 Les champs d'action : Prospective
 « Il faut donc préparer nos enfants à être des inventeurs et à faire preuve à la fois de courage qu’il faut pour prendre des initiatives et de l’imagination indispensable à la découverte de solutions neuves. Tirer avec rigueur les conséquences de quelques principes bien établis n’est pas et ne sera jamais démodé. Mais il faut aujourd’hui beaucoup plus qu’hier former des hypothèses audacieuses, reposer en termes nouveaux d’anciens problèmes, essayer des chemins où personne ne s’est encore engagé. L’avenir n’est pas à attendre mais à construire et, par conséquence, d’abord à inventer. » (Berger, 1960)
 
-Les champs d’action : Intelligence territoriale
-Historique avec la Communauté d’Agglomération Valenciennes Métropole
-
-Le projet Accroche Active a pour ambition de développer une politique globale, innovante et performante autour de trois thématiques : le décrochage scolaire, l'orientation et le lien aux entreprises
-Appui à l'évaluation
-Leitmotiv
-
-Permettre la pérennisation et la transférabilité du projet de la Communauté d'Agglomération Valenciennes Métropole
-Affirmer l'ancrage territorial de l'INSA Hauts-de-France
-Offrir aux étudiants des opportunités authentiques d'actions citoyennes
-Thèmes
-
-Prospective et data analytics pour la gouvernance territoriale
-Think and Do Tank au côté du citoyen, des élus, de l'action publique et de l'ingénierie territoriale
-Communication numérique sous forme de storytelling et cahiers de tendances de cohésion sociale
-Les services partagés avec l’Université Polytechnique Hauts de France
-Pôle Formation et Vie Etudiante 
-Centre de santé
-Une cellule d'écoute « Violences sexistes »
-Une cellule d’écoute « Risques Psychosociaux »
-Service commun de Documentation
-Service d’action culturelle
-Service des sports
-Pôle relations internationales
-Service affaires Juridiques et Contentieux
-Entrepreneuriat - HUBHOUSE
-
 
 Mission handicap
 L’INSA Hauts-de-France dispose d’un référent Handicap en lien direct avec le relais handicap de l’Université Polytechnique Hauts-de-France (UPHF).
 
 Un suivi et des adaptations pour les étudiants en situation de handicap
 Cette mission permet le suivi et la mise en place des adaptations nécessaires et spécifiques de chaque étudiant, tout au long du cursus, en lien direct avec les gestionnaires pédagogiques :
-
-Aménagement du cursus, des examens
-Aménagement des postes de travail
-Aménagements des locaux
-Prêt de matériel
-Aide humaine (prise de notes, tutorat, …)
-L’INSA Hauts-de-France organise également des réunions d’informations envers les gestionnaires pédagogiques, en lien avec le relais handicap de l’UPHF.
-Il est important de faire connaître sa situation dès la rentrée afin que le relais handicap, le centre de santé et l’INSA Hauts de France puissent anticiper les aménagements nécessaires.
-Il est rappelé à tous les étudiants en situation de handicap que leur dossier doit être renouvelé chaque année, pour pouvoir bénéficier de nouveau des aménagements. 
+- Aménagement du cursus, des examens
+- Aménagement des postes de travail
+- Aménagements des locaux
+- Prêt de matériel
+- Aide humaine (prise de notes, tutorat, …)
+- L’INSA Hauts-de-France organise également des réunions d’informations envers les gestionnaires pédagogiques, en lien avec le relais handicap de l’UPHF.
+- Il est important de faire connaître sa situation dès la rentrée afin que le relais handicap, le centre de santé et l’INSA Hauts de France puissent anticiper les aménagements nécessaires.
+- Il est rappelé à tous les étudiants en situation de handicap que leur dossier doit être renouvelé chaque année, pour pouvoir bénéficier de nouveau des aménagements. 
 
 Le guide de l’étudiant en situation de handicap
 pour Tout savoir sur la Mission Handicap à l'UPHF
-
 Contact
 Référent handicap
 Tél : 03 27 51 13 59
@@ -1706,8 +1612,6 @@ Former des ingénieurs conscients, capables de comprendre et d’analyser la com
 Répondre à la demande de sens grandissante de la part des étudiants tant dans leur formation que dans leur future carrière professionnelle ; 
 Répondre aux besoins de compétences actuels et à venir des organisations à opérer efficacement leur propre transition énergétique et écologique. 
 Contact : communication@insa-hdf.fr
-En savoir plus sur The Shift Project
-En savoir plus sur ClimatSup INSA 
 
 Fresque du Climat
 La Fresque du Climat est un outil collaboratif et créatif qui permet de sensibiliser tous types de personnes aux changements climatiques. Cet outil a été conçu par Cédric Ringenbach, et il permet grâce à un jeu de cartes ayant des thématiques différentes, de comprendre les relations causes-conséquences qu’il y a entre elles.
@@ -1718,7 +1622,6 @@ Culture
 L’action culturelle de l’INSA Hauts-de-France a pour vocation de mettre en œuvre la politique culturelle de l'Institut. Cette politique a pour but d’éveiller la curiosité et de développer la sensibilité des étudiants en complément de leur formation. Cette politique s’adresse aussi aux personnels. 
 L’action culturelle s’articule ainsi autour de 2 grands axes.
 
-Publié le 31/01/2022
 
 Favoriser l'accès à la culture
 Née de la volonté d’ouverture au monde à travers l’art et la culture, cette politique propose un large éventail d’activités : expositions, spectacles vivants, projections, concerts, conférences, rencontres, ateliers d’artistes, visites de musées et lieux patrimoniaux. 
@@ -1732,39 +1635,34 @@ Toutes ces propositions culturelles se font en relation avec les acteurs de la f
 Mais aussi via un réseau : 
 
 le groupe INSA
-Centre Gaston Berger de l’INSA Hauts-de-France
-le Service Culturel de l’UPHF
-l’Institut Sociétés et Humanités
-l’IMTD
-Arenberg Minecreative
-ESAD Valenciennes
-l’ESAC Cambrai 
-les laboratoires de recherche 
-des partenaires régionaux : Le Phénix, OmbelliScience 
-des partenaires nationaux : la Fête de la Science, réseau Art Université Culture
+- Centre Gaston Berger de l’INSA Hauts-de-France
+- le Service Culturel de l’UPHF
+- l’Institut Sociétés et Humanités
+- l’IMTD
+- Arenberg Minecreative
+- ESAD Valenciennes
+- l’ESAC Cambrai 
+- les laboratoires de recherche 
+- des partenaires régionaux : Le Phénix, OmbelliScience 
+- des partenaires nationaux : la Fête de la Science, réseau Art Université Culture
 
 
 Les partenaires de l'INSA HDF: 
-Le groupe INSA
-ITII: Institut des techniques d'ingénieur de l'industrie
-Ministère de l'Enseignement supérieur et de la Recherche
-Formasup Nord pas de collaborations
-Conférence Grandes écoles 
-Conférence de directeurs des écoles Françaises de l'ingénieurs
-La commission des titres d'ingénieurs
-ENAEE European Network for Accreditation of Engineering Education 
+- Le groupe INSA
+- ITII: Institut des techniques d'ingénieur de l'industrie
+- Ministère de l'Enseignement supérieur et de la Recherche
+- Formasup Nord pas de collaborations
+- Conférence Grandes écoles 
+- Conférence de directeurs des écoles Françaises de l'ingénieurs
+- La commission des titres d'ingénieurs
+- ENAEE European Network for Accreditation of Engineering Education 
 
 
 Candidature INSA HDF
 Comment candidater à l'INSA Hauts-de-France en formation d’ingénieur, en Master, Licence ou DEUST ?
 
 CANDIDATER EN FORMATION D'INGÉNIEUR INSA
-Vous souhaitez intégrer l’INSA en 1ère, 2ème, ou 3ème année? 
-Le recrutement se fait sur concours commun à l'ensemble des établissements du Groupe INSA. 
-L'inscription au concours est à réalisée sur : 
-la plateforme Parcoursup, pour les baccalauréats français
-le site du Groupe INSA, pour les bacs étrangers ou tout autre baccalauréat/diplôme
-Consultez la procédure pour intégrer l'INSA Hauts-de- France
+Vous souhaitez intégrer l’INSA en 1ère, 2ème, ou 3ème année? Le recrutement se fait sur concours commun à l'ensemble des établissements du Groupe INSA.  L'inscription au concours est à réalisée sur :  la plateforme Parcoursup, pour les baccalauréats français le site du Groupe INSA, pour les bacs étrangers ou tout autre baccalauréat/diplôme Consultez la procédure pour intégrer l'INSA Hauts-de- France
 Contact : admission.ingenieur@insa-hdf.fr
 Vous souhaitez intégrer l’INSA en 4ème année? 
 Les dossiers de candidature sont à déposer via la procédure e-candidat du 5 février au 15 mai 2024.
@@ -1774,23 +1672,10 @@ Les candidatures sont à déposer via la procédure e-candidat. La plateforme ro
 Contact : admission.ingenieur-fisa@insa-hdf.fr
 
 CANDIDATER EN MASTER INSA
-Pour intégrer la 1ère année de Master, candidatez via la plateforme nationale Mon Master.
-Les candidatures sont à déposer du 26 février au 24 mars 2024.
-Consultez le calendrier 2024 des grandes dates pour intégrer un master.
-Pour intégrer une 2ème année de Master, candidatez via la procédure e-candidat.
-Les candidatures sont à déposer du 12 février au 19 mai 2024.
+Pour intégrer la 1ère année de Master, candidatez via la plateforme nationale Mon Master. Les candidatures sont à déposer du 26 février au 24 mars 2024. Consultez le calendrier 2024 des grandes dates pour intégrer un master. Pour intégrer une 2ème année de Master, candidatez via la procédure e-candidat. Les candidatures sont à déposer du 12 février au 19 mai 2024.
 
 CANDIDATER EN LICENCE OU EN DEUST INSA
-Pour intégrer une licence en 1ère année, candidatez sur la plateforme Parcoursup.
-Les vœux sont à formuler jusqu'au 14 mars 2024.
-Consultez le calendrier 2024 Parcoursup, en 3 grandes étapes.
-Pour intégrer une licence en 2ème ou 3ème année, candidatez via la procédure e-candidat.
-Les candidatures sont à déposer du 12 février au 19 mai 2024.
-Pour intégrer une licence professionnelle, candidatez via la procédure e-candidat.
-Les candidatures sont à déposer du 12 février au 19 mai 2024.
-Pour intégrer un DEUST, candidatez sur la plateforme Parcoursup.
-Les vœux sont à formuler jusqu'au 14 mars 2024.
-Consultez le calendrier 2024 Parcoursup, en 3 grandes étapes.
+Pour intégrer une licence en 1ère année, candidatez sur la plateforme Parcoursup. Les vœux sont à formuler jusqu'au 14 mars 2024. Consultez le calendrier 2024 Parcoursup, en 3 grandes étapes. Pour intégrer une licence en 2ème ou 3ème année, candidatez via la procédure e-candidat. Les candidatures sont à déposer du 12 février au 19 mai 2024. Pour intégrer une licence professionnelle, candidatez via la procédure e-candidat. Les candidatures sont à déposer du 12 février au 19 mai 2024. Pour intégrer un DEUST, candidatez sur la plateforme Parcoursup. Les vœux sont à formuler jusqu'au 14 mars 2024. Consultez le calendrier 2024 Parcoursup, en 3 grandes étapes.
 
 CANDIDATER EN TANT QU'ÉTUDIANT INTERNATIONAL INSA
 Vous êtes étudiant international et vous n'avez jamais été inscrit à l'Université Polytechnique Hauts-de-France ?
@@ -2413,40 +2298,12 @@ Localisation : Etage du bâtiment Claudin Lejeune 1
 
 
 Vie associative à INSA Hauts-de-France
-Au coeur d’un campus vert, les étudiants de l’INSA Hauts-de-France profitent d’un large choix d’associations.
-
-Sport, danse, musique, arts, photos, environnement, robotique….quelles que soient leur(s) passion(s) ou leur(s) envie(s), il y a forcément une association qui leur convient.
-
-BDE INSA-Hauts-de-France
-Le BDE (Bureau Des Elèves) est l’endroit pour réussir sa vie extra-scolaire. Il est composé d’une cinquantaine de membres motivés et dévoués à animer la vie étudiante de l’école.
-
-Il a pour but de leur faire apprécier la vie dans et en dehors de l’école, notamment en proposant des sorties et des soirées de tous genres, allant du simple afterwork à la semaine au ski, en passant par le week-end d’intégration.
-
-Par ailleurs, le BDE diffuse les informations et représente les étudiants auprès de l'administration et du corps enseignant et est aussi chargé de superviser la vie associative de l'école.
-
-Suivez toute l'actualité du BDE sur son site internet et ses réseaux sociaux.
-
-CONTACT :
-Pour établir un partenariat : partenariats@bde-insa-hdf.com 
-Pour contacter une personne du BDE : prenom.nom@bde-insa-hdf.com
-
-La SPHIMX
-L’association SPHIMX est l’association de la filière sciences de l’INSA Hauts-de-France. Elle est tenue par des étudiants bénévoles toujours à la recherche de nouveaux membres. L'association est constituée d’un président, un trésorier et un secrétaire, ainsi qu’un premier vice-président.
-
-L’association SPHIMX a pour objectif d’améliorer la vie étudiante sur le Campus, notamment pour les premières années. La SPHIMX se situe au rez-de-chaussée du bâtiment Abel de Pujol 2 où les étudiants pourront trouver des friandises et des boissons à prix réduit ; ils ont à leur disposition, un billard, un baby-foot et divers jeux de société afin de divertir les étudiants pendant les intercours.
-
-Suivez toute l'actualité de la SPHIMX sur Facebook et sur Instagram.
-
+Au coeur d’un campus vert, les étudiants de l’INSA Hauts-de-France profitent d’un large choix d’associations. Sport, danse, musique, arts, photos, environnement, robotique….quelles que soient leur(s) passion(s) ou leur(s) envie(s), il y a forcément une association qui leur convient.
+BDE INSA-Hauts-de-France : Le BDE (Bureau Des Elèves) est l’endroit pour réussir sa vie extra-scolaire. Il est composé d’une cinquantaine de membres motivés et dévoués à animer la vie étudiante de l’école. Il a pour but de leur faire apprécier la vie dans et en dehors de l’école, notamment en proposant des sorties et des soirées de tous genres, allant du simple afterwork à la semaine au ski, en passant par le week-end d’intégration. Par ailleurs, le BDE diffuse les informations et représente les étudiants auprès de l'administration et du corps enseignant et est aussi chargé de superviser la vie associative de l'école. Suivez toute l'actualité du BDE sur son site internet et ses réseaux sociaux.
+CONTACT : Pour établir un partenariat : partenariats@bde-insa-hdf.com, Pour contacter une personne du BDE : prenom.nom@bde-insa-hdf.com
+La SPHIMX : L’association SPHIMX est l’association de la filière sciences de l’INSA Hauts-de-France. Elle est tenue par des étudiants bénévoles toujours à la recherche de nouveaux membres. L'association est constituée d’un président, un trésorier et un secrétaire, ainsi qu’un premier vice-président. L’association SPHIMX a pour objectif d’améliorer la vie étudiante sur le Campus, notamment pour les premières années. La SPHIMX se situe au rez-de-chaussée du bâtiment Abel de Pujol 2 où les étudiants pourront trouver des friandises et des boissons à prix réduit ; ils ont à leur disposition, un billard, un baby-foot et divers jeux de société afin de divertir les étudiants pendant les intercours. Suivez toute l'actualité de la SPHIMX sur Facebook et sur Instagram.
 CONTACT : sphimx@sphimx.com
-
-Association STAPS VA
-L'association STAPS VA regroupe les étudiants en formation en STAPS.
-
-Cette association est composée d'étudiants en STAPS de Valenciennes et a pour but d'animer la vie extra-scolaire des étudiants grâce à divers événements tout en contribuant également au bon déroulement des études à travers de l'aide scolaire et administrative.
-
-Suivez toute l'actualité de STAPS VA sur Facebook et Instagram.
-
-3/4 de pouce
+Association STAPS VA : L'association STAPS VA regroupe les étudiants en formation en STAPS. Cette association est composée d'étudiants en STAPS de Valenciennes et a pour but d'animer la vie extra-scolaire des étudiants grâce à divers événements tout en contribuant également au bon déroulement des études à travers de l'aide scolaire et administrative. Suivez toute l'actualité de STAPS VA sur Facebook et Instagram.
 Trois Quarts de Pouce est l'association des étudiants en Audiovisuel et Multimédia.
 
 
@@ -2454,30 +2311,22 @@ Stages de mathématiques à l'INSA en juin
 L'INSA et le DMATHS, département de mathématiques du CERAMATHS, organisent deux stages en juin : l'un pour des élèves de seconde des lycées de la région, l'autre pour des étudiantes de licence venant de toute la France
 
 Comme chaque année, le DMATHS, département de mathématiques du CERAMATHS, avec le soutien logistique du Centre Gaston Berger de l'INSA - Hauts-de-France et le financement de l'association Animath, organise  un stage Faire des mathématiques autrement, les 10, 11, 13 et 14 juin prochains. Une quarantaine d'élèves de seconde volontaires sera donc dans les locaux de l'INSA.
-
 Mais cette année, la même semaine, il y aura aussi un stage Maths C pour L : une vingtaine d'étudiantes de licence de mathématiques de toute la France viendront faire des mathématiques et rencontrer des mathématiciennes, de profession ou au moins de formation.
 L'objectif est de lutter contre les stéréotypes de genre, et d'encourager ces étudiantes à continuer aussi loin que possible leurs études de mathématiques.
 Le principe de ces stages a été initié l'an dernier par les trois sociétés savantes de mathématiques (Société Mathématique de France, Société de Mathématiques Appliquées et Industrielles, Société Française de Statistique). Cette année il y en a aussi à Marseille, Paris et Rennes.
 
 Chacun des stages aura pour fil conducteur un atelier "recherche" : par petits groupes, les stagiaires travailleront sur des sujets ouverts, adaptés bien sûr à leur niveau de scolarité. Les élèves de seconde seront accompagnés par des étudiants de licence de mathématiques, ils rencontreront aussi des élèves ingénieurs, et visiteront les installations du C3T. Les étudiantes du stage Maths C pour L pourront dialoguer avec des enseignantes-chercheuses de l'UPHF et d'autres universités, une jeune docteure, une ancienne étudiante du master de mathématiques appliquées... Quelques activités de loisir leur seront aussi proposées, pour aérer cette semaine de travail.
-
 Pour accompagner ces deux stages, l'exposition "Mathématiques, informatique... avec elles !" sera visible dans le hall du bâtiment Claudin le Jeune 3 pendant toute la semaine. Cette exposition est une création de l'association femmes & mathématiques.
 
 
 Créathon 2024 : Sport, ensemble sur tous les terrains !
 Du 24 au 28 juin 2024, nos élèves ingénieurs de troisième année participeront au Créathon, un moment incontournable de leur formation, dédié à l'innovation et à la créativité.
 Voici tout ce que vous devez savoir !
-
 Le Créathon : Un marathon de la créativité
 Le Créathon est une semaine intensive de défis durant laquelle les étudiants doivent concevoir une proposition innovante de produits ou de services en lien avec une thématique donnée. Les équipes et les projets sont encadrés par de nombreux enseignants.
-
 Les étudiants seront notamment minutieusement préparés grâce à une série d'ateliers de créativité, basés sur la méthode de "Lego Serious Play", ainsi qu'avec une session de formation avec des animateurs.
-
 À la fin de cette semaine, les étudiants présenteront leur proposition devant un jury composé de professionnels et d'entrepreneurs. L’équipe gagnante recevra l'aide nécessaire au développement deson idée.
-
 Une thématique en lien avec l’actualité
 2024 est une année sportive exceptionnelle avec la tenue des Jeux Olympiques à Paris. C’est pourquoi la thématique choisie cette année est celle du sport : « Sport, ensemble sur tous les terrains ! », soutenue par notre partenaire DECATHLON, un acteur majeur dans ce domaine. Nos élèves ingénieurs auront l'opportunité d'explorer différentes disciplines sportives et d'innover en les adaptant à la vie quotidienne et à l’environnement.
-
 L’évènement bénéficie également du soutien de l’entreprise TOYOTA, avec son ancrage local fort, et de TOYOTOMI, ainsi que de la MISSION BASSIN MINIER.
-
 Abonnez-vous à notre compte Instagram @insahdf, pour suivre l’actualité de nos étudiants tout au long de cette semaine !
