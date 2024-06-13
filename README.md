@@ -67,10 +67,6 @@ Ce fichier a pour but d'expliquer de manière technique le développement de l'a
     ├── Monocraft.ttf
     ├── style.css
     └── images/
-
-    
-requirements.txt
-README.md
 ```
 
 - `main.py` : Le script principal qui initialise le modèle, charge le contexte et démarre le serveur Flask.
