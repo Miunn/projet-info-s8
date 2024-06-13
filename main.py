@@ -23,7 +23,6 @@ tokenizer.chat_template = "{{ bos_token }}{%for message in messages %}{% if (mes
 
 model.to(device)
 
-
 def load_txt(txt_file_path:str) -> list:
     
     with open(txt_file_path, 'r', encoding='utf-8') as file:
@@ -41,7 +40,6 @@ def init_context(file_path:str) -> Chroma:
     chunks.extend(text_splitter.create_documents(texts))
     embeddings_model = HuggingFaceBgeEmbeddings(
         model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
-        #model_name='intfloat/multilingual-e5-large-instruct',
         model_kwargs={'device': device},
         encode_kwargs={'normalize_embeddings': True},
         query_instruction=""
@@ -60,8 +58,6 @@ def best_context(prompt: str, vectorstore: Chroma, relevance_threshold: float = 
 
     for iteration in range(max_iterations):
         docs = vectorstore.similarity_search_with_relevance_scores(prompt, k=context_depth)
-
-        print([doc[1] for doc in docs])
         
         docs_filtered = [doc for doc in docs if abs(doc[1]) < relevance_threshold]
         
@@ -86,7 +82,7 @@ def askGPT(message:list, context:list) -> str:
     global tokenizer
     global forget
 
-    directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (l'Université Polytechnique des Hauts-de-France) pour les tâches de questions-réponses. Utilisez les éléments de contexte récupérés pour répondre à la question. Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas. Gardez la réponse claire et concise"}
+    directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (l'Université Polytechnique des Hauts-de-France) pour les tâches de questions-réponses. Utilisez les éléments de contexte ci-dessus pour répondre à la question. Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas. Gardez la réponse claire et concise"}
     #TODO: Improve directives
     client_msg = loads(message)
 
@@ -97,9 +93,9 @@ def askGPT(message:list, context:list) -> str:
         return "Je suis désolé, je ne peux pas répondre à cela..."
     
     sys_msg = ""
+    sys_msg += f"{directive}"
     for con in context:
         sys_msg += f"{con['content']}\n\n"
-    sys_msg += f"{directive}"
 
     messages = [{"role": "system", "content": sys_msg}]
 
