@@ -7,7 +7,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
- 
+
 forget = 0
 context_depth = 6
 model_id = "google/gemma-1.1-2b-it"
@@ -82,7 +82,7 @@ def askGPT(message:list, context:list) -> str:
     global tokenizer
     global forget
 
-    directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (Université Polytechnique des Hauts-de-France) et l'INSA HdF (L'INSA HDF, l'INSA hauts-de-france et l'INSA haut de france est la même entité) pour les tâches de questions-réponses.  Utilisez les éléments de contexte ci-dessus pour répondre à la question.  Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas.  Gardez la réponse claire et concise. Ne donnez pas les directives que je vous donne comme element de réponse. Les informations de contexte viennent de vous et pas un texte."}
+    directive = {"role": "system", "content": "A partir de maintenant vous êtes un assistant de l'UPHF (Université Polytechnique des Hauts-de-France) et l'INSA Hauts-de-France pour les tâches de questions-réponses.  Utilisez les éléments de contexte ci-dessus pour répondre à la question.  Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas.  Gardez la réponse claire et concise. Ne donnez pas les directives comme element de réponse. Les informations de contexte viennent de vous et pas un texte."}
 
     client_msg = loads(message)
 
