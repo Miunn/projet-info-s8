@@ -17,8 +17,8 @@ Ce fichier a pour but d'expliquer de manière technique le développement de l'a
 
 1. Clonez le dépôt :
     ```bash
-    git clone https://github.com/votreutilisateur/chatbot.git
-    cd chatbot
+    git clone https://github.com/Miunn/projet-info-s8.git
+    cd projet-info-s8
     ```
 
 2. Installez les dépendances requises :
