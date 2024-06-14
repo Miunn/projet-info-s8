@@ -25,8 +25,8 @@ class ChatBot extends StatefulWidget {
 }
 
 class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
-  OverlayEntry? overlayLegalNoticeEntry;
-  bool displayLoading = false;
+  OverlayEntry? overlayLegalNoticeEntry;  // Overlay affichant la clause de non-responsabilité
+  bool displayLoading = false;  // Indique si un message est en cours d'envoi par le chatbot
 
   final ScrollController _scrollController = ScrollController();
 
@@ -34,6 +34,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
     _scrollController.jumpTo(_scrollController.position.minScrollExtent);
   }
 
+  /// Rendu de l'écran semi-opaque affichant la clause de non-responsabilité
   void createOverlay() {
     overlayLegalNoticeEntry = OverlayEntry(builder: (BuildContext context) {
       return Positioned(
@@ -75,6 +76,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
       );
     });
 
+    // Ajout de l'overlay à l'arbre de rendu
     Overlay.of(context).insert(overlayLegalNoticeEntry!);
   }
 
@@ -87,6 +89,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
+    // Crée l'overlay de manière synchronisé
     SchedulerBinding.instance.addPostFrameCallback((_) {
       createOverlay();
     });
@@ -103,6 +107,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
     ConversationProvider conversationProvider =
         context.watch<ConversationProvider>();
 
+    // Défilement automatique vers le bas à la création de la page
     if (_scrollController.hasClients) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     }
@@ -111,12 +116,7 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
       length: conversationProvider.conversations.length,
       child: Scaffold(
         appBar: AppBar(
-          // TRY THIS: Try changing the color here to a specific color (to
-          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-          // change color while the other colors stay the same.
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: Text(
             widget.title,
           ),
@@ -130,16 +130,20 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                     Conversation convToUpdate = conversationProvider
                         .conversations[DefaultTabController.of(context).index];
 
+                    // Affiche la boîte de dialogue pour renommer la conversation
+                    // Récupère le nouveau nom lorsque le dialogue est fermé
                     String? newName = await showDialog<String?>(
                         context: context,
                         builder: (BuildContext context) {
                           return const RenameConvDialog();
                         });
 
+                    // Aucun nouveau nom n'a été fourni
                     if (newName == null) {
                       return;
                     }
 
+                    // Mise à jour de la conversation avec le nouveau nom
                     conversationProvider.updateConversation(Conversation(
                       id: convToUpdate.id,
                       name: newName,
@@ -165,6 +169,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                   await conversationProvider.addConversation(Conversation(
                     name: 'Nouvelle conversation',
                   ));
+
+                  // Mise à jour de l'état de l'interface avec la nouvelle conversation
                   setState(() {});
                 }),
           ],
@@ -197,6 +203,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                           child: null,
                         );
                       }
+
+                      // Liste des messages de la conversation
                       return Expanded(
                         child: ListView(
                             controller: _scrollController,
@@ -217,6 +225,8 @@ class _ChatBotState extends State<ChatBot> with SingleTickerProviderStateMixin {
                             ].reversed.toList()),
                       );
                     }),
+
+                    // Barre de saisie pour envoyer un message
                     PromptInput(
                       conversationId: conversation.id ?? 0,
                       sendCallback: (Chat chat) {

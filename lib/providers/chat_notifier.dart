@@ -5,10 +5,11 @@ import 'package:uphf_generative_ai/utils/chat_db_interface.dart';
 import '../models/chat.dart';
 
 class ChatProvider extends ChangeNotifier {
+  // Interface de la base de données des messages
   final ChatDatabaseInterface _chatDBInterface = ChatDatabaseInterface.instance;
 
-  List<Chat> _chats = [];
-  Map<int, List<Chat>> _chatsByConversation = {};
+  List<Chat> _chats = [];     // Liste des messages
+  Map<int, List<Chat>> _chatsByConversation = {}; // Messages regroupés par conversation
 
   List<Chat> get chats => _chats;
   Map<int, List<Chat>> get chatsByConversation => _chatsByConversation;
@@ -17,10 +18,12 @@ class ChatProvider extends ChangeNotifier {
     loadChats();
   }
 
+  // Récupère un message par son identifiant
   Chat? getChatById(int id) {
     return _chats.firstWhereOrNull((chat) => chat.id == id);
   }
 
+  // Récupère tous les messages
   Future<void> loadChats() async {
     _chats = await _chatDBInterface.chats;
 

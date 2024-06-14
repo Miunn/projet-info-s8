@@ -1,14 +1,16 @@
 class Chat {
-  int? id;
-  String? message;
-  bool? isMe;
-  bool? ratedGood;
-  bool? ratedBad;
-  int? conversationId;
-  DateTime? sentAt;
+  int? id;                // Identifiant unique du message
+  String? message;        // Contenu du message
+  bool? isMe;             // Indique si le message a été envoyé par l'utilisateur
+  bool? ratedGood;        // Indique si le message a été noté positivement
+  bool? ratedBad;         // Indique si le message a été noté négativement
+  int? conversationId;    // Identifiant de la conversation à laquelle appartient le message
+  DateTime? sentAt;       // Date d'envoi du message
 
+  // Constructeur, aucun paramètre requis
   Chat({this.id, this.message, this.isMe, this.ratedGood, this.ratedBad, this.conversationId, this.sentAt});
 
+  // Transforme l'objet en map adaptable en JSON
   Map<String, Object?> toMap() {
     return {
       'id': id,
@@ -21,6 +23,7 @@ class Chat {
     };
   }
 
+  // Constructeur à partir d'une map
   Chat.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     message = map['message'];
@@ -31,6 +34,7 @@ class Chat {
     sentAt = DateTime.parse(map['sentAt']);
   }
 
+  // Format de dictionnaire à envoyer à l'API
   Map<String, Object?> toApi() {
     return {
       'role': (isMe ?? true) ? 'user' : 'assistant',
@@ -38,6 +42,7 @@ class Chat {
     };
   }
 
+  // Affichage de l'objet sous forme de chaîne de caractères
   @override
   String toString() {
     return 'Chat{id: $id, message: $message, isMe: $isMe, ratedGood: $ratedGood, ratedBad: $ratedBad, conversationId: $conversationId, sentAt: $sentAt}';

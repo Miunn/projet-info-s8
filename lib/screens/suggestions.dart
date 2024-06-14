@@ -14,9 +14,9 @@ class SuggestionsScreen extends StatefulWidget {
 }
 
 class _SuggestionsScreenState extends State<SuggestionsScreen> {
-  bool loading = false;
-  List<Suggestion> suggestions = [];
-  final DateFormat formatter = DateFormat('dd/MM/yyyy HH:mm');
+  bool loading = false;                 // Indique si les suggestions sont en cours de chargement
+  List<Suggestion> suggestions = [];    // Liste des suggestions récupérées depuis l'API
+  final DateFormat formatter = DateFormat('dd/MM/yyyy HH:mm');  // Format de date à afficher
 
   @override
   void initState() {
@@ -24,6 +24,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
     loadSuggestions();
   }
 
+  // Récupération des suggestions
   loadSuggestions() async {
     loading = true;
     List<Suggestion> suggestions =
@@ -42,17 +43,18 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Suggestions'),
       ),
-      body: RefreshIndicator(
+      body: RefreshIndicator( // Permet de rafraîchir la liste des suggestions en glissant vers le bas
         onRefresh: () {
           return loadSuggestions();
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: (loading)
-              ? const Center(child: CircularProgressIndicator())
-              : ListView.builder(
+              ? const Center(child: CircularProgressIndicator())  // Affichage d'un cercle de chargement si les suggestions sont en cours de chargement
+              : ListView.builder(                                 // Affichage de la liste des suggestions
                       itemCount: suggestions.length,
                       itemBuilder: (BuildContext context, int index) {
+                        // Rendu d'une suggestion sous forme de carte
                         return Card.filled(
                           child: ListTile(
                             title: Text(suggestions[index].message ?? ""),
@@ -83,10 +85,11 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
                           ),
                         );
                       },
-                      physics: const AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),   // Permet de glisser vers le bas même lorsque la liste ne dépasse pas
                     ),
         ),
       ),
+      // Bouton d'ajout d'une suggestion
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
